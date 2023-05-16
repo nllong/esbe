@@ -1,2 +1,7 @@
 */.bundle/*
-*/run/*
+*-cache.csv
+/*/run/*/*
+!/*/run/*/*.csv
+!/*/run/*/*.json
+!/*/run/*/*.html
+!/*/run/*/*.js
