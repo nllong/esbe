@@ -1,0 +1,24 @@
+Feature Id,Feature Name,Mapper Class
+1,mall_1,URBANopt::Scenario::ChilledWaterStorageMapper
+2,hotel_1,URBANopt::Scenario::ChilledWaterStorageMapper
+3,office_1,URBANopt::Scenario::ChilledWaterStorageMapper
+4,office_2,URBANopt::Scenario::ChilledWaterStorageMapper
+5,office_3,URBANopt::Scenario::ChilledWaterStorageMapper
+6,office_4,URBANopt::Scenario::ChilledWaterStorageMapper
+7,office_5,URBANopt::Scenario::ChilledWaterStorageMapper
+8,office_6,URBANopt::Scenario::ChilledWaterStorageMapper
+9,office_7,URBANopt::Scenario::ChilledWaterStorageMapper
+10,res_1,URBANopt::Scenario::ChilledWaterStorageMapper
+11,res_2,URBANopt::Scenario::ChilledWaterStorageMapper
+12,res_3,URBANopt::Scenario::ChilledWaterStorageMapper
+13,res_4,URBANopt::Scenario::ChilledWaterStorageMapper
+14,res_5,URBANopt::Scenario::ChilledWaterStorageMapper
+15,res_6,URBANopt::Scenario::ChilledWaterStorageMapper
+16,res_7,URBANopt::Scenario::ChilledWaterStorageMapper
+17,res_8,URBANopt::Scenario::ChilledWaterStorageMapper
+18,res_9,URBANopt::Scenario::ChilledWaterStorageMapper
+19,restaurant_1,URBANopt::Scenario::ChilledWaterStorageMapper
+20,restaurant_2,URBANopt::Scenario::ChilledWaterStorageMapper
+21,restaurant_3,URBANopt::Scenario::ChilledWaterStorageMapper
+22,restaurant_4,URBANopt::Scenario::ChilledWaterStorageMapper
+23,school_1,URBANopt::Scenario::ChilledWaterStorageMapper

@@ -1,0 +1,24 @@
+Feature Id,Feature Name,Mapper Class
+1,mall_1,URBANopt::Scenario::FlexibleHotWaterMapper
+2,hotel_1,URBANopt::Scenario::FlexibleHotWaterMapper
+3,office_1,URBANopt::Scenario::FlexibleHotWaterMapper
+4,office_2,URBANopt::Scenario::FlexibleHotWaterMapper
+5,office_3,URBANopt::Scenario::FlexibleHotWaterMapper
+6,office_4,URBANopt::Scenario::FlexibleHotWaterMapper
+7,office_5,URBANopt::Scenario::FlexibleHotWaterMapper
+8,office_6,URBANopt::Scenario::FlexibleHotWaterMapper
+9,office_7,URBANopt::Scenario::FlexibleHotWaterMapper
+10,res_1,URBANopt::Scenario::FlexibleHotWaterMapper
+11,res_2,URBANopt::Scenario::FlexibleHotWaterMapper
+12,res_3,URBANopt::Scenario::FlexibleHotWaterMapper
+13,res_4,URBANopt::Scenario::FlexibleHotWaterMapper
+14,res_5,URBANopt::Scenario::FlexibleHotWaterMapper
+15,res_6,URBANopt::Scenario::FlexibleHotWaterMapper
+16,res_7,URBANopt::Scenario::FlexibleHotWaterMapper
+17,res_8,URBANopt::Scenario::FlexibleHotWaterMapper
+18,res_9,URBANopt::Scenario::FlexibleHotWaterMapper
+19,restaurant_1,URBANopt::Scenario::FlexibleHotWaterMapper
+20,restaurant_2,URBANopt::Scenario::FlexibleHotWaterMapper
+21,restaurant_3,URBANopt::Scenario::FlexibleHotWaterMapper
+22,restaurant_4,URBANopt::Scenario::FlexibleHotWaterMapper
+23,school_1,URBANopt::Scenario::FlexibleHotWaterMapper
