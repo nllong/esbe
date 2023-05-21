@@ -5,6 +5,7 @@
 !/*/run/*/*.json
 !/*/run/*/*.html
 !/*/run/*/*.js
+!/*/run/*/*/feature_reports/*.csv
 /PAT_Files/*.zip
 /PAT_Files/*/.temp
 /PAT_Files/*/clusters

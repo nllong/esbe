@@ -1,120 +1,120 @@
 {
-  "timestamp": "2023-05-19T11:20:42.675",
+  "timestamp": "2023-05-21T12:46:19.139",
   "results": [
     {
       "id": "1",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::MallMapper"
     },
     {
       "id": "2",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::HotelMapper"
     },
     {
       "id": "3",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::Office_1_2Mapper"
     },
     {
       "id": "4",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::Office_1_2Mapper"
     },
     {
       "id": "5",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::Office_3Mapper"
     },
     {
       "id": "6",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::Office_4_5Mapper"
     },
     {
       "id": "7",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::Office_4_5Mapper"
     },
     {
       "id": "8",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::Office_6_7Mapper"
     },
     {
       "id": "9",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::Office_6_7Mapper"
     },
     {
       "id": "10",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::ResidentialMapper"
     },
     {
       "id": "11",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::ResidentialMapper"
     },
     {
       "id": "12",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::ResidentialMapper"
     },
     {
       "id": "13",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::ResidentialMapper"
     },
     {
       "id": "14",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::ResidentialMapper"
     },
     {
       "id": "15",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::ResidentialMapper"
     },
     {
       "id": "16",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::ResidentialMapper"
     },
     {
       "id": "17",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::ResidentialMapper"
     },
     {
       "id": "18",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::ResidentialMapper"
     },
     {
       "id": "19",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::Restaurant_1Mapper"
     },
     {
       "id": "20",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::Restaurant_2_3Mapper"
     },
     {
       "id": "21",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::Restaurant_2_3Mapper"
     },
     {
       "id": "22",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::Restaurant_4Mapper"
     },
     {
       "id": "23",
       "status": "Complete",
-      "mapper_class": "URBANopt::Scenario::ClassProjectMapper"
+      "mapper_class": "URBANopt::Scenario::SchoolMapper"
     }
   ]
 }
