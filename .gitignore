@@ -5,3 +5,12 @@
 !/*/run/*/*.json
 !/*/run/*/*.html
 !/*/run/*/*.js
+/PAT_Files/*.zip
+/PAT_Files/*/.temp
+/PAT_Files/*/clusters
+/PAT_Files/*/data
+/PAT_Files/*/localResults
+/PAT_Files/*/logs
+/PAT_Files/*/*.json
+!/PAT_Files/*/pat.json
+/PAT_Files/*/*.zip
