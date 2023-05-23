@@ -35,19 +35,19 @@ module URBANopt
         OpenStudio::Extension.set_measure_argument(osw, 'ImproveMotorEfficiency', 'motor_eff', 96.0)
 
         OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForExteriorWalls', '__SKIP__', false)
-        OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForExteriorWalls', 'r_value', 10.0)
+        OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForExteriorWalls', 'r_value', 13.81)
 
         OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForRoofs', '__SKIP__', true)
         OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForRoofs', 'r_value', 30.0)
 
         OpenStudio::Extension.set_measure_argument(osw, 'ReduceElectricEquipmentLoadsByPercentage', '__SKIP__', false)
-        OpenStudio::Extension.set_measure_argument(osw, 'ReduceElectricEquipmentLoadsByPercentage', 'elecequip_power_reduction_percent', 34.0)
+        OpenStudio::Extension.set_measure_argument(osw, 'ReduceElectricEquipmentLoadsByPercentage', 'elecequip_power_reduction_percent', 27.61)
 
         OpenStudio::Extension.set_measure_argument(osw, 'ReduceLightingLoadsByPercentage', '__SKIP__', false)
-        OpenStudio::Extension.set_measure_argument(osw, 'ReduceLightingLoadsByPercentage', 'lighting_power_reduction_percent', 32.0)
+        OpenStudio::Extension.set_measure_argument(osw, 'ReduceLightingLoadsByPercentage', 'lighting_power_reduction_percent', 29.84)
 
-        OpenStudio::Extension.set_measure_argument(osw, 'ReduceSpaceInfiltrationByPercentage', '__SKIP__', true)
-        OpenStudio::Extension.set_measure_argument(osw, 'ReduceSpaceInfiltrationByPercentage', 'space_infiltration_reduction_percent', 30.0)
+        OpenStudio::Extension.set_measure_argument(osw, 'ReduceSpaceInfiltrationByPercentage', '__SKIP__', false)
+        OpenStudio::Extension.set_measure_argument(osw, 'ReduceSpaceInfiltrationByPercentage', 'space_infiltration_reduction_percent', 39.38)
 
         # Demand Flexibility Measures
 

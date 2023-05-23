@@ -1,3 +1,4 @@
+
 require 'urbanopt/reporting'
 require 'openstudio/common_measures'
 require 'openstudio/model_articulation'
@@ -22,29 +23,29 @@ module URBANopt
         OpenStudio::Extension.set_measure_argument(osw, 'AddOverhangsByProjectionFactor', '__SKIP__', true)
         OpenStudio::Extension.set_measure_argument(osw, 'AddOverhangsByProjectionFactor', 'projection_factor', 0.5)
 
-        OpenStudio::Extension.set_measure_argument(osw, 'EnableDemandControlledVentilation', '__SKIP__', true)
+        OpenStudio::Extension.set_measure_argument(osw, 'EnableDemandControlledVentilation', '__SKIP__', false)
         OpenStudio::Extension.set_measure_argument(osw, 'EnableDemandControlledVentilation', 'dcv_type', 'EnableDCV')
 
-        OpenStudio::Extension.set_measure_argument(osw, 'EnableEconomizerControl', '__SKIP__', true)
+        OpenStudio::Extension.set_measure_argument(osw, 'EnableEconomizerControl', '__SKIP__', false)
         OpenStudio::Extension.set_measure_argument(osw, 'EnableEconomizerControl', 'economizer_type', 'FixedDryBulb')
 
-        OpenStudio::Extension.set_measure_argument(osw, 'ImproveFanBeltEfficiency', '__SKIP__', true)
-        OpenStudio::Extension.set_measure_argument(osw, 'ImproveFanBeltEfficiency', 'motor_eff', 3.0)
+        OpenStudio::Extension.set_measure_argument(osw, 'ImproveFanBeltEfficiency', '__SKIP__', false)
+        OpenStudio::Extension.set_measure_argument(osw, 'ImproveFanBeltEfficiency', 'motor_eff', 2.44)
 
         OpenStudio::Extension.set_measure_argument(osw, 'ImproveMotorEfficiency', '__SKIP__', true)
         OpenStudio::Extension.set_measure_argument(osw, 'ImproveMotorEfficiency', 'motor_eff', 96.0)
 
-        OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForExteriorWalls', '__SKIP__', true)
-        OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForExteriorWalls', 'r_value', 13.0)
+        OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForExteriorWalls', '__SKIP__', false)
+        OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForExteriorWalls', 'r_value', 40.9)
 
-        OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForRoofs', '__SKIP__', true)
-        OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForRoofs', 'r_value', 30.0)
+        OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForRoofs', '__SKIP__', false)
+        OpenStudio::Extension.set_measure_argument(osw, 'IncreaseInsulationRValueForRoofs', 'r_value', 39.9)
 
-        OpenStudio::Extension.set_measure_argument(osw, 'ReduceElectricEquipmentLoadsByPercentage', '__SKIP__', true)
-        OpenStudio::Extension.set_measure_argument(osw, 'ReduceElectricEquipmentLoadsByPercentage', 'elecequip_power_reduction_percent', 30.0)
+        OpenStudio::Extension.set_measure_argument(osw, 'ReduceElectricEquipmentLoadsByPercentage', '__SKIP__', false)
+        OpenStudio::Extension.set_measure_argument(osw, 'ReduceElectricEquipmentLoadsByPercentage', 'elecequip_power_reduction_percent', 30.54)
 
-        OpenStudio::Extension.set_measure_argument(osw, 'ReduceLightingLoadsByPercentage', '__SKIP__', true)
-        OpenStudio::Extension.set_measure_argument(osw, 'ReduceLightingLoadsByPercentage', 'lighting_power_reduction_percent', 30.0)
+        OpenStudio::Extension.set_measure_argument(osw, 'ReduceLightingLoadsByPercentage', '__SKIP__', false)
+        OpenStudio::Extension.set_measure_argument(osw, 'ReduceLightingLoadsByPercentage', 'lighting_power_reduction_percent', 27.33)
 
         OpenStudio::Extension.set_measure_argument(osw, 'ReduceSpaceInfiltrationByPercentage', '__SKIP__', true)
         OpenStudio::Extension.set_measure_argument(osw, 'ReduceSpaceInfiltrationByPercentage', 'space_infiltration_reduction_percent', 30.0)
