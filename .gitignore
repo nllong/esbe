@@ -1,5 +1,21 @@
 */.bundle/*
 *-cache.csv
+.DS_Store
+.python-version
+.ipynb_checkpoints
+.vscode
+~$*
+*.pyc
+
+# ignore the class files
+# because they shoudn't be
+# publicly shared
+class_files
+
+# The ESBE folder is 
+# dynamically generated from ipynb
+esbe
+
 /*/run/*/*
 !/*/run/*/*.csv
 !/*/run/*/*.json
