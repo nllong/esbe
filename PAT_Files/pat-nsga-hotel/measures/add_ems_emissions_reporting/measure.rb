@@ -150,7 +150,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     future_year_chs << '2020'
     future_year_chs << '2022'
     future_year_chs << '2024'
-    future_year_chs << '2026'  
+    future_year_chs << '2026'
     future_year_chs << '2028'
     future_year_chs << '2030'
     future_year_chs << '2032'
@@ -186,7 +186,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     annual_historical_year_chs << '2007'
     annual_historical_year_chs << '2009'
     annual_historical_year_chs << '2010'
-    annual_historical_year_chs << '2012'  
+    annual_historical_year_chs << '2012'
     annual_historical_year_chs << '2014'
     annual_historical_year_chs << '2016'
     annual_historical_year_chs << '2018'
@@ -224,7 +224,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     arguments(model).each do |argument|
 
       case argument.name
-      
+
       when 'future_subregion'
         if !argument.choiceValues.include? future_subregion
           runner.registerError("#{future_subregion} is not a valid option. Please select from of the following future_subregion options #{argument.choiceValues}")
@@ -337,7 +337,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
 
 
     #### add emissions intensity metric
-    # get building from model 
+    # get building from model
     building = model.getBuilding
     floor_area = building.floorArea * 10.764 #change from m2 to ft2
     #add metric
@@ -345,7 +345,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     ems_prgm.addLine("SET his_hr_intensity = his_hr * 1000 / #{floor_area}") # unit: kg/ft2 - changed mt to kg
     ems_prgm.addLine("SET fut_yr_intensity = fut_yr * 1000 / #{floor_area}") # unit: kg/ft2 - changed mt to kg
     ems_prgm.addLine("SET his_yr_intensity = his_yr * 1000 / #{floor_area}") # unit: kg/ft2 - changed mt to kg
-    
+
     # add EMS program calling manager
     mgr_prgm = OpenStudio::Model::EnergyManagementSystemProgramCallingManager.new(model)
     mgr_prgm.setName('Emissions Calc Prgm')
@@ -389,7 +389,7 @@ class AddEMSEmissionsReporting < OpenStudio::Measure::ModelMeasure
     ems_var4.setUnits('mt')
 
 
-    ##### add emissions intensity 
+    ##### add emissions intensity
     # add future hourly EMS output variable
     ems_var5 = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'fut_hr_intensity')
     ems_var5.setName('Future_Hourly_Electricity_Emissions_Intensity')

@@ -182,7 +182,7 @@ module OsLib_Reporting
           qaqc_flag_details[:data] << [attribute.valueAsString]
           runner.registerWarning("#{check_name} - #{attribute.valueAsString}")
           num_flags += 1
-        end          
+        end
       end
 
       # add row to table for this check
@@ -197,9 +197,9 @@ module OsLib_Reporting
 
       # change units for some checks #todo - this can be changed later to use "unit" attribute
       if check_name == 'Supply and Zone Air Temperature'
-        tol_val = "#{tol_val} F"        
+        tol_val = "#{tol_val} F"
       elsif check_name == 'Baseline Mechanical System Type'
-        tol_val = "#{tol_val}"        
+        tol_val = "#{tol_val}"
       else
         tol_val = "#{tol_val}%"
       end

@@ -11,7 +11,7 @@ It will be modified based on occupancy.
 ### Lighting
 
 The exterior and garage lighting makes use of the weekday/weekend schedule.
-Indoor lighting schedule is generated on the fly. 
+Indoor lighting schedule is generated on the fly.
 Holiday lighting makes use of the holiday_sch.
 
 ### Cooking

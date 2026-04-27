@@ -41,4 +41,3 @@ The first row is the probability of a cluster size of 1 event, second row for pr
 `schedule_config.yml`
 
 This yaml file contains various miscellaneous configurations for the schedule generator, and their meanings and sources are defined within the file.
-

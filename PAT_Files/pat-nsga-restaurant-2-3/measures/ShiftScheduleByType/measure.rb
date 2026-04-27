@@ -40,7 +40,7 @@
 # http://openstudio.nrel.gov/sites/openstudio.nrel.gov/files/nv_data/cpp_documentation_it/model/html/namespaces.html
 
 # This measure was created as an adaptation of the "ShiftScheduleProfileTime" common
-# measure. This measure adds the ability to choose types (Cooling/Heating) of 
+# measure. This measure adds the ability to choose types (Cooling/Heating) of
 # schedules to shift instead of choosing all schedules or one schedule.
 
 # Start the measure
@@ -73,7 +73,7 @@ class ShiftScheduleByType < OpenStudio::Measure::ModelMeasure
 
     # Argument to choose which schedules will be shifted
     choices = OpenStudio::StringVector.new
-    choices << 'Cooling' 
+    choices << 'Cooling'
     choices << 'Heating'
     choices << 'CoolHeat'
     schedchoice = OpenStudio::Measure::OSArgument.makeChoiceArgument('schedchoice', choices)
@@ -92,7 +92,7 @@ class ShiftScheduleByType < OpenStudio::Measure::ModelMeasure
     if !runner.validateUserArguments(arguments(model), user_arguments)
       return false
     end
-    
+
     # Export CSV file with Schedule setpoints before schedule shifts
     #model1 = runner.lastOpenStudioModel
     #model = model1.get
@@ -119,7 +119,7 @@ class ShiftScheduleByType < OpenStudio::Measure::ModelMeasure
 
       time += dt
     end
-    
+
     runner.registerInfo("Writing CSV report 'schedulereportbefore.csv'")
     File.open('schedulereportbefore.csv', 'w') do |file|
       file.puts header.join(',')
@@ -127,7 +127,7 @@ class ShiftScheduleByType < OpenStudio::Measure::ModelMeasure
         file.puts row.join(',')
       end
     end
-    
+
     # populate choice argument for schedules that are applied to surfaces in the model
     schedule_handles = OpenStudio::StringVector.new
     schedule_display_names = OpenStudio::StringVector.new
@@ -167,7 +167,7 @@ class ShiftScheduleByType < OpenStudio::Measure::ModelMeasure
       raw_schedules.each do |raw_schedule|
         raw_schedules_hash[raw_schedule.name.to_s] = raw_schedule
       end
-  
+
       # Looping through sorted hash of schedules
       raw_schedules_hash.sort.map do |name, value|
         # Only include if the schedule is used in the model
@@ -289,12 +289,12 @@ class ShiftScheduleByType < OpenStudio::Measure::ModelMeasure
 
           if values.length == 2
             timeschg = values.length - 2
-          else 
+          else
             timeschg = values.length - 3
           end
 
           # Count number of arrays
-          for i in 0..timeschg 
+          for i in 0..timeschg
             new_time = times[i] + shift_time
             # Adjust wrap around times for times that are t > 24 or t < 0
             if new_time < time_0
@@ -339,7 +339,7 @@ class ShiftScheduleByType < OpenStudio::Measure::ModelMeasure
     else
       runner.registerFinalCondition("Shifted time for all profiles used by this schedule.")
     end
-    
+
     # Export CSV file with Schedule setpoints after schedule shifts
     #model = runner.lastOpenStudioModel
     #model = model.get
@@ -376,7 +376,7 @@ class ShiftScheduleByType < OpenStudio::Measure::ModelMeasure
         file.puts row.join(',')
       end
     end
-    
+
     return true
   end
 end

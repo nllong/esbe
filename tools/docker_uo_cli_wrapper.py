@@ -75,19 +75,29 @@ class DockerUOCliWrapper(UOCliWrapper):
         return redacted
 
     def _run_command(self, command: str) -> None:  # type: ignore[override]
-        container_workdir = self._host_to_container_path(Path(self.working_dir).resolve())
+        container_workdir = self._host_to_container_path(
+            Path(self.working_dir).resolve()
+        )
 
         docker_cmd = [
-            "docker", "run", "--rm",
-            "-v", f"{self._mount_source}:{self._mount_target}",
-            "-w", str(container_workdir),
+            "docker",
+            "run",
+            "--rm",
+            "-v",
+            f"{self._mount_source}:{self._mount_target}",
+            "-w",
+            str(container_workdir),
             *self._gem_developer_key_env_args(),
             self.image_tag,
-            "bash", "-c", command,
+            "bash",
+            "-c",
+            command,
         ]
 
         with open(self.log_file, "a") as log:
-            log.write(f"Running Docker command: {' '.join(self._redact_docker_cmd(docker_cmd))}\n")
+            log.write(
+                f"Running Docker command: {' '.join(self._redact_docker_cmd(docker_cmd))}\n"
+            )
             result = subprocess.run(docker_cmd, capture_output=True, check=False)  # noqa: S603
             stdout = result.stdout.decode("utf-8")
             stderr = result.stderr.decode("utf-8")

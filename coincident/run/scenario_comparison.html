@@ -167,7 +167,7 @@
           overflow: scroll;
           display: inline-block;
           font-size:  0.9em;
-          
+
         }
         .flag-cell {
           text-align: center !important;
@@ -278,7 +278,7 @@
             </div>
         </md-content>
 
-        <div ng-if="scenarios && scenarios[0] && scenarios[0]['annual_values']['Future_Annual_Electricity_Emissions']" >    
+        <div ng-if="scenarios && scenarios[0] && scenarios[0]['annual_values']['Future_Annual_Electricity_Emissions']" >
           <h2>Emissions</h2>
           <p>Multiple emissions associated with electricity may be included in the graphs below and represent different calculation approaches (e.g., future hourly and historical average). Electricity emissions values from different calculation approaches should NOT be summed together.</p>
           <md-content class="md-padding" layout-sm="column" layout="row" layout-wrap>
@@ -289,7 +289,7 @@
                               <span class="md-headline">{{ chart.name | strReplace:'_':' ' | strReplace:'Emissions':'' | strReplace:'Intensity':''}}</span>
                               <span class="md-subhead">
                                 <span>Emissions</span>
-                                <span ng-if="chart.name.includes('Intensity')"> Intensity </span> 
+                                <span ng-if="chart.name.includes('Intensity')"> Intensity </span>
                                 ({{ chart.units}})</span>
 
                              <!--  <span ng-if="scenario.complete_simulation!=true" class="md-subhead error">{{errorText}}</span> -->
@@ -303,7 +303,7 @@
           </md-content>
         </div>
 
-        <div ng-if="scenarios && scenarios[0] && scenarios[0]['qaqc_flags'] && (scenarios[0]['qaqc_flags'] | json) != '{}'" >    
+        <div ng-if="scenarios && scenarios[0] && scenarios[0]['qaqc_flags'] && (scenarios[0]['qaqc_flags'] | json) != '{}'" >
           <h2>QAQC</h2>
           <p>The table below shows the aggregated number of QAQC flags raised in each scenario.</p>
           <md-content class="md-padding" layout-sm="column" layout="row" layout-wrap>
@@ -340,12 +340,12 @@
 
 
     <script type="text/javascript">
-      
+
       var myApp = angular.module('myApp', ['ngMaterial', 'nvd3']);
 
       myApp.controller('MyAppCtrl', function ($scope) {
         $scope.scenarios = scenarioData;
-        
+
         $scope.monthlyFuelChartOptions = {
           chart: {
             type: 'multiBarChart',
@@ -491,10 +491,10 @@
           }
         };
 
-        $scope.emissionCharts = [ 
+        $scope.emissionCharts = [
           {'name': 'Future_Annual_Electricity_Emissions', 'units': 'mt CO2e' },
           {'name': 'Future_Hourly_Electricity_Emissions','units': 'mt CO2e' },
-          {'name': 'Historical_Annual_Electricity_Emissions','units': 'mt CO2e' }, 
+          {'name': 'Historical_Annual_Electricity_Emissions','units': 'mt CO2e' },
           {'name': 'Historical_Hourly_Electricity_Emissions','units': 'mt CO2e' },
           {'name': 'Natural_Gas_Emissions', 'units': 'mt CO2e' },
           {'name': 'Propane_Emissions', 'units': 'mt CO2e' },
@@ -545,11 +545,11 @@
         });
 
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        
+
         var datasets = ['Electricity:Facility', 'REopt:ElectricityProduced:Total', 'NaturalGas:Facility', 'Propane:Facility', 'FuelOilNo2:Facility', 'OtherFuels:Facility'];
 
         var endUseKeys = ['Heating:Electricity', 'Cooling:Electricity', 'InteriorLights:Electricity', 'ExteriorLights:Electricity', 'InteriorEquipment:Electricity', 'ExteriorEquipment:Electricity', 'Fans:Electricity', 'Pumps:Electricity', 'HeatRejection:Electricity', 'WaterSystems:Electricity'];
-        
+
         var kbtu_datasets = ['NaturalGas:Facility', 'Propane:Facility', 'FuelOilNo2:Facility', 'OtherFuels:Facility'];
         var changeToKbtu = false;
 
@@ -560,7 +560,7 @@
         $scope.annualNetChartData = {};
         $scope.annualEndUseChartData = {};
         $scope.annualEmissionsChartData = {};
-        
+
         // setup emissions
         var emissionsYMin = {};
         var emissionsYMax = {};
@@ -584,7 +584,7 @@
           _.forEach(endUseKeys, function (endUseKey) {
             var endUseValue = scenario.annual_values[endUseKey];
             // console.log("endUseKey: ", endUseKey, "endUseValue: ", endUseValue);
-            
+
             if (endUseValue == 0 || !endUseValue) {
               console.log("no data found for: ", endUseKey);
             }
@@ -616,7 +616,7 @@
 
             // monthly fuel use
             $scope.monthlyFuelChartData[scenario.name] = [];
-             
+
               // first iterate through all kbtu datasets to see if you'll need to change to kBtu units
             _.forEach(kbtu_datasets, function (kbtu_dataset) {
               var values = scenario.monthly_values[kbtu_dataset];
@@ -626,7 +626,7 @@
             });
 
             _.forEach(datasets, function (dataset) {
-              
+
               var values = scenario.monthly_values[dataset];
               var datasetUnit = "";
 
@@ -710,7 +710,7 @@
 
                   // check that we have ElectricityProduced monthly data
                   if(scenario.monthly_values['REopt:ElectricityProduced:Total']) {
-                    value = value - scenario.monthly_values['REopt:ElectricityProduced:Total'][i]*3.41 
+                    value = value - scenario.monthly_values['REopt:ElectricityProduced:Total'][i]*3.41
                   }
                    _.forEach(kbtu_datasets, function(ds){
                      value += scenario.monthly_values[ds][i];
@@ -735,7 +735,7 @@
             $scope.annualNetChartData[scenario.name] = _.round($scope.annualNetChartData[scenario.name]);
             $scope.monthlyNetChartOptions.chart['yDomain'] = [_.round(monthlyNetYMin), _.round(monthlyNetYMax)];
           }
-          
+
           // annual end use
           if(scenario['complete_simulation'] == true){
           $scope.annualEndUseChartData[scenario.name] = [];
@@ -744,30 +744,30 @@
               var endUseValue = scenario.annual_values[endUseKey]
 
               // console.log("endUseKey: ", endUseKey, " endUseValue: ", endUseValue);
-                      
+
             $scope.annualEndUseChartData[scenario.name].push({
               key: endUseKey,
               values: [{
-                x: 'End Use', 
+                x: 'End Use',
                 y: endUseValue
               }]
             });
           });
           $scope.annualEndUseChartOptions.chart['yDomain'] = [0, _.round(annualTotalYMax)];
-        
+
           }
         });
-        
+
         // fix the emissions charts Y range
         _.forEach($scope.emissionCharts, function(chart) {
             $scope.annualEmissionsChartOptions[chart.name].chart['yDomain'] = [_.round(emissionsYMin[chart.name]), _.round(emissionsYMax[chart.name])];
-        });  
-      });    
-     
+        });
+      });
+
       _.delay(function () {
         window.dispatchEvent(new Event('resize'));
       }, 1000);
-      
+
       myApp.filter('strReplace', function () {
         return function (input, from, to) {
           input = input || '';

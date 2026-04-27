@@ -21753,4 +21753,3 @@ OS:Output:Variable,
   ,                                       !- Key Value
   Zone Thermal Comfort ASHRAE 55 Simple Model Summer or Winter Clothes Not Comfortable Time, !- Variable Name
   Timestep;                               !- Reporting Frequency
-

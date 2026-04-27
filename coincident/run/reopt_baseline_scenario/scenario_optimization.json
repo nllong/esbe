@@ -193,12 +193,8 @@
           "average_yearly_energy_produced_kwh": 2058719.0
         }
       ],
-      "wind": [
-
-      ],
-      "generator": [
-
-      ],
+      "wind": [],
+      "generator": [],
       "storage": [
         {
           "size_kw": 288.2886501991818,
@@ -207,29 +203,15 @@
       ]
     },
     "scenario_power_distribution": {
-      "substations": [
-
-      ],
-      "distribution_lines": [
-
-      ],
-      "capacitors": [
-
-      ]
+      "substations": [],
+      "distribution_lines": [],
+      "capacitors": []
     },
     "scenario_power_distribution_cost": {
-      "results": [
-
-      ],
-      "violation_summary": [
-
-      ],
-      "costs_per_equipment": [
-
-      ],
-      "equipment": [
-
-      ]
+      "results": [],
+      "violation_summary": [],
+      "costs_per_equipment": [],
+      "equipment": []
     },
     "qaqc_flags": {
       "eui_reasonableness": null,
@@ -244,9 +226,7 @@
       "mechanical_system_efficiency": null,
       "total_qaqc_flags": null
     },
-    "construction_costs": [
-
-    ],
+    "construction_costs": [],
     "reporting_periods": [
       {
         "start_date": {
@@ -613,9 +593,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 1.0848630075051993
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -806,23 +784,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -1234,9 +1202,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 1.3833268738124724
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -1427,23 +1393,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -1664,9 +1620,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 2.486900056465274
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -1857,23 +1811,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -2121,9 +2065,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 0.5013930680931684
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -2314,23 +2256,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -2551,9 +2483,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 0.20234423897581794
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -2744,23 +2674,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -2956,9 +2876,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 0.3889447573075892
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -3149,23 +3067,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -3361,9 +3269,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 0.37372457485828614
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -3554,23 +3460,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -3766,9 +3662,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 0.3787366144616136
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -3959,23 +3853,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -4171,9 +4055,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 0.37689969604863216
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -4364,23 +4246,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -4530,9 +4402,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 2.476152623211447
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -4723,23 +4593,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -4889,9 +4749,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 2.469611528822055
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -5082,23 +4940,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -5248,9 +5096,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 2.472191586576335
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -5441,23 +5287,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -5607,9 +5443,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 2.480012843152994
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -5800,23 +5634,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -5966,9 +5790,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 2.4579524680073126
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -6159,23 +5981,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -6325,9 +6137,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 2.480784692072681
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -6518,23 +6328,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -6684,9 +6484,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 2.492488030378075
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -6877,23 +6675,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -7043,9 +6831,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 2.4950923307270005
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -7236,23 +7022,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -7402,9 +7178,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 2.490134824071029
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -7595,23 +7369,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -7817,9 +7581,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 0.18269960265922566
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -8010,23 +7772,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -8232,9 +7984,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 0.54951270449008
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -8425,23 +8175,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -8647,9 +8387,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 0.5709937806007674
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -8840,23 +8578,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -9062,9 +8790,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 0.7602694307751371
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -9255,23 +8981,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,
@@ -9607,9 +9323,7 @@
         "orientation_deg": 0.0,
         "aspect_ratio": 1.4777792469184774
       },
-      "construction_costs": [
-
-      ],
+      "construction_costs": [],
       "reporting_periods": [
         {
           "start_date": {
@@ -9800,23 +9514,13 @@
         }
       ],
       "distributed_generation": {
-        "solar_pv": [
-
-        ],
-        "wind": [
-
-        ],
-        "generator": [
-
-        ],
-        "storage": [
-
-        ]
+        "solar_pv": [],
+        "wind": [],
+        "generator": [],
+        "storage": []
       },
-      "power_distribution": {
-      },
-      "thermal_storage": {
-      },
+      "power_distribution": {},
+      "thermal_storage": {},
       "qaqc_flags": {
         "eui_reasonableness": null,
         "end_use_by_category": null,

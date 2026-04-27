@@ -52,7 +52,7 @@ module URBANopt
         OpenStudio::Extension.set_measure_argument(osw, 'AddOverhangsByProjectionFactor', '__SKIP__',   false)
         OpenStudio::Extension.set_measure_argument(osw, 'AddOverhangsByProjectionFactor', 'projection_factor', 0.4738)
 
-        OpenStudio::Extension.set_measure_argument(osw, 'EnableDemandControlledVentilation', '__SKIP__', false) 
+        OpenStudio::Extension.set_measure_argument(osw, 'EnableDemandControlledVentilation', '__SKIP__', false)
         OpenStudio::Extension.set_measure_argument(osw, 'EnableDemandControlledVentilation', 'dcv_type', 'EnableDCV')
 
         OpenStudio::Extension.set_measure_argument(osw, 'EnableEconomizerControl', '__SKIP__', false)

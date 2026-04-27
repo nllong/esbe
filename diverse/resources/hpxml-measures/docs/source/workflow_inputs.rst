@@ -4,7 +4,7 @@ Workflow Inputs
 ===============
 
 OpenStudio-HPXML requires a building description in an `HPXML file <https://hpxml.nrel.gov/>`_ format.
-HPXML is an open data standard for collecting and transferring home energy data. 
+HPXML is an open data standard for collecting and transferring home energy data.
 Using HPXML files reduces the complexity and effort for software developers to leverage the EnergyPlus simulation engine.
 
 Using HPXML
@@ -23,7 +23,7 @@ HPXML files submitted to OpenStudio-HPXML undergo a two step validation process:
 2. Validation using `Schematron <http://schematron.com/>`_
 
   The Schematron document for the EnergyPlus use case can be found at ``HPXMLtoOpenStudio/resources/hpxml_schematron/EPvalidator.xml``.
-  Schematron is a rule-based validation language, expressed in XML using XPath expressions, for validating the presence or absence of inputs in XML files. 
+  Schematron is a rule-based validation language, expressed in XML using XPath expressions, for validating the presence or absence of inputs in XML files.
   As opposed to an XSD Schema, a Schematron document validates constraints and requirements based on conditionals and other logical statements.
   For example, if an element is specified with a particular value, the applicable enumerations of another element may change.
 
@@ -399,7 +399,7 @@ If the PV compensation type is net-metering, additional information can be enter
   ``AnnualExcessSellbackRateType``  string             See [#]_     No        User-Specified  Net metering annual excess sellback rate type [#]_
   ``AnnualExcessSellbackRate``      double    $/kWh                 No [#]_   0.03            User-specified net metering annual excess sellback rate [#]_
   ================================  ========  =======  ===========  ========  ==============  =============================================================
-  
+
   .. [#] AnnualExcessSellbackRateType choices are "User-Specified" and "Retail Electricity Cost".
   .. [#] When annual PV production exceeds the annual building electricity consumption, this rate, which is often significantly below the retail rate, determines the value of the excess electricity sold back to the utility.
          This may happen to offset gas consumption, for example.
@@ -457,7 +457,7 @@ If daylight saving time is observed, additional information can be specified in 
 HPXML Building Summary
 ----------------------
 
-High-level building summary information is entered in ``/HPXML/Building/BuildingDetails/BuildingSummary``. 
+High-level building summary information is entered in ``/HPXML/Building/BuildingDetails/BuildingSummary``.
 
 HPXML Site
 **********
@@ -486,7 +486,7 @@ For each neighboring building defined, additional information is entered in a ``
   ``Distance``                    double             ft                > 0                  Yes                 Distance of neighbor from the dwelling unit
   ``Height``                      double             ft                > 0                  No        See [#]_  Height of neighbor
   ==============================  =================  ================  ===================  ========  ========  =============================================
-  
+
   .. [#] Orientation choices are "northeast", "east", "southeast", "south", "southwest", "west", "northwest", or "north"
   .. [#] If Height not provided, assumed to be same height as the dwelling unit.
 
@@ -534,8 +534,8 @@ Building construction is entered in ``/HPXML/Building/BuildingDetails/BuildingSu
   .. [#] If NumberofBathrooms not provided, calculated as NumberofBedrooms/2 + 0.5 based on the `2010 BAHSP <https://www1.eere.energy.gov/buildings/publications/pdfs/building_america/house_simulation.pdf>`_.
   .. [#] If neither ConditionedBuildingVolume nor AverageCeilingHeight provided, AverageCeilingHeight defaults to the lesser of 8.0 and InfiltrationVolume / ConditionedFloorArea.
          If needed, additional defaulting is performed using the following relationship: ConditionedBuildingVolume = ConditionedFloorArea * AverageCeilingHeight + ConditionedCrawlspaceVolume.
-  .. [#] If HasFlueOrChimney not provided, assumed to be true if any of the following conditions are met: 
-         
+  .. [#] If HasFlueOrChimney not provided, assumed to be true if any of the following conditions are met:
+
          - heating system is non-electric Furnace, Boiler, WallFurnace, FloorFurnace, Stove, PortableHeater, or FixedHeater and AFUE/Percent is less than 0.89,
          - heating system is non-electric Fireplace, or
          - water heater is non-electric with energy factor (or equivalent calculated from uniform energy factor) less than 0.63.
@@ -588,11 +588,11 @@ For example, a foundation wall between the unit's vented crawlspace and the neig
 
 .. warning::
 
-  It is the software tool's responsibility to provide the appropriate building surfaces. 
+  It is the software tool's responsibility to provide the appropriate building surfaces.
   While some error-checking is in place, it is not possible to know whether some surfaces are incorrectly missing.
 
-Also note that wall and roof surfaces do not require an azimuth/orientation to be specified. 
-Rather, only the windows/skylights themselves require an azimuth/orientation. 
+Also note that wall and roof surfaces do not require an azimuth/orientation to be specified.
+Rather, only the windows/skylights themselves require an azimuth/orientation.
 Thus, software tools can choose to use a single wall (or roof) surface to represent multiple wall (or roof) surfaces for the entire building if all their other properties (construction type, interior/exterior adjacency, etc.) are identical.
 
 HPXML Air Infiltration
@@ -681,7 +681,7 @@ For a multifamily building where the dwelling unit has another dwelling unit abo
   .. [#] RoofType choices are "asphalt or fiberglass shingles", "wood shingles or shakes", "shingles", "slate or tile shingles", "metal surfacing", "plastic/rubber/synthetic sheeting", "expanded polystyrene sheathing", "concrete", or "cool roof".
   .. [#] RoofColor choices are "light", "medium", "medium dark", "dark", or "reflective".
   .. [#] If SolarAbsorptance not provided, defaults based on RoofType and RoofColor:
-         
+
          - **asphalt or fiberglass shingles**: dark=0.92, medium dark=0.89, medium=0.85, light=0.75, reflective=0.50
          - **wood shingles or shakes**: dark=0.92, medium dark=0.89, medium=0.85, light=0.75, reflective=0.50
          - **shingles**: dark=0.92, medium dark=0.89, medium=0.85, light=0.75, reflective=0.50
@@ -915,7 +915,7 @@ Each space type that borders the ground (i.e., basements, crawlspaces, garages, 
   .. [#] InsulationSpansEntireSlab=true only required if InsulationWidth is not provided.
   .. [#] If CarpetFraction not provided, defaults to 0.8 when adjacent to conditioned space, otherwise 0.0.
   .. [#] If CarpetRValue not provided, defaults to 2.0 when adjacent to conditioned space, otherwise 0.0.
-  
+
 .. _windowinputs:
 
 HPXML Windows
@@ -946,7 +946,7 @@ Each window or glass door area is entered as an ``/HPXML/Building/BuildingDetail
   .. [#] InteriorShading/SummerShadingCoefficient default value indicates 30% reduction in solar heat gain, based on `ANSI/RESNET/ICC 301-2019 <https://codes.iccsafe.org/content/RESNETICC3012019>`_.
   .. [#] InteriorShading/WinterShadingCoefficient default value indicates 15% reduction in solar heat gain, based on `ANSI/RESNET/ICC 301-2019 <https://codes.iccsafe.org/content/RESNETICC3012019>`_.
   .. [#] GlassType choices are "clear" or "low-e".
-         The ``UFactor`` and ``SHGC`` of the window will be adjusted depending on the ``GlassType``, based on correlations derived using `data reported by PNNL <https://labhomes.pnnl.gov/documents/PNNL_24444_Thermal_and_Optical_Properties_Low-E_Storm_Windows_Panels.pdf>`_. 
+         The ``UFactor`` and ``SHGC`` of the window will be adjusted depending on the ``GlassType``, based on correlations derived using `data reported by PNNL <https://labhomes.pnnl.gov/documents/PNNL_24444_Thermal_and_Optical_Properties_Low-E_Storm_Windows_Panels.pdf>`_.
          - **Clear storm windows**: U-factor = U-factor of base window - (0.6435 * U-factor of base window - 0.1533); SHGC = 0.9 * SHGC of base window
          - **low-e storm windows**: U-factor = U-factor of base window - (0.766 * U-factor of base window - 0.1532); SHGC = 0.8 * SHGC of base window
          Note that a storm window is not allowed for a window with U-factor lower than 0.45.
@@ -976,7 +976,7 @@ If UFactor and SHGC are not provided and GlassLayers is not "glass block", addit
   ``GlassType``                 string            See [#]_                 No        clear     Type of glass
   ``GasFill``                   string            See [#]_                 No        See [#]_  Type of gas inside double/triple-pane windows
   ============================  ========  ======  =======================  ========  ========  ========================================================
-  
+
   .. [#] FrameType child element choices are ``Aluminum``, ``Fiberglass``, ``Metal``, ``Vinyl``, or ``Wood``.
   .. [#] ThermalBreak is only valid if FrameType is ``Aluminum`` or ``Metal``.
   .. [#] GlassType choices are "clear", "low-e", "tinted", "tinted/reflective", or "reflective".
@@ -984,7 +984,7 @@ If UFactor and SHGC are not provided and GlassLayers is not "glass block", addit
   .. [#] If GasFill not provided, defaults to "air" for double-pane windows and "argon" for triple-pane windows.
 
 If UFactor and SHGC are not provided, they are defaulted as follows:
-  
+
   ===========  =======================  ============  =========================  =============  =======  ====
   GlassLayers  FrameType                ThermalBreak  GlassType                  GasFill        UFactor  SHGC
   ===========  =======================  ============  =========================  =============  =======  ====
@@ -1050,7 +1050,7 @@ Each skylight is entered as an ``/HPXML/Building/BuildingDetails/Enclosure/Skyli
   .. [#] Orientation choices are "northeast", "east", "southeast", "south", "southwest", "west", "northwest", or "north"
   .. [#] GlassLayers choices are "single-pane", "double-pane", or "triple-pane".
   .. [#] GlassType choices are "clear" or "low-e".
-         The ``UFactor`` and ``SHGC`` of the skylight will be adjusted depending on the ``GlassType``, based on correlations derived using `data reported by PNNL <https://labhomes.pnnl.gov/documents/PNNL_24444_Thermal_and_Optical_Properties_Low-E_Storm_Windows_Panels.pdf>`_. 
+         The ``UFactor`` and ``SHGC`` of the skylight will be adjusted depending on the ``GlassType``, based on correlations derived using `data reported by PNNL <https://labhomes.pnnl.gov/documents/PNNL_24444_Thermal_and_Optical_Properties_Low-E_Storm_Windows_Panels.pdf>`_.
          - **clear storm windows**: U-factor = U-factor of base window - (0.6435 * U-factor of base window - 0.1533); SHGC = 0.9 * SHGC of base window
          - **low-e storm windows**: U-factor = U-factor of base window - (0.766 * U-factor of base window - 0.1532); SHGC = 0.8 * SHGC of base window
          Note that a storm window is not allowed for a skylight with U-factor lower than 0.45.
@@ -1066,7 +1066,7 @@ If UFactor and SHGC are not provided and GlassLayers is not "glass block", addit
   ``GlassType``                 string            See [#]_                 No        <none>    Type of glass
   ``GasFill``                   string            See [#]_                 No        See [#]_  Type of gas inside double/triple-pane skylights
   ============================  ========  ======  =======================  ========  ========  ========================================================
-  
+
   .. [#] FrameType child element choices are ``Aluminum``, ``Fiberglass``, ``Metal``, ``Vinyl``, or ``Wood``.
   .. [#] ThermalBreak is only valid if FrameType is ``Aluminum`` or ``Metal``.
   .. [#] GlassType choices are "clear", "low-e", "tinted", "tinted/reflective", or "reflective".
@@ -1075,7 +1075,7 @@ If UFactor and SHGC are not provided and GlassLayers is not "glass block", addit
   .. [#] If GasFill not provided, defaults to "air" for double-pane skylights and "argon" for triple-pane skylights.
 
 If UFactor and SHGC are not provided, they are defaulted as follows:
-  
+
   ===========  =======================  ============  =========================  =============  =======  ====
   GlassLayers  FrameType                ThermalBreak  GlassType                  GasFill        UFactor  SHGC
   ===========  =======================  ============  =========================  =============  =======  ====
@@ -1150,7 +1150,7 @@ Furniture mass in the conditioned space is entered as ``/HPXML/Building/Building
   ``Type``                                      string                See [#]_     No        light-weight  Type of furniture
   ============================================  ======  ============  ===========  ========  ============  =================================================
 
-  .. [#] Type choices are "light-weight" and "heavy-weight". 
+  .. [#] Type choices are "light-weight" and "heavy-weight".
 
 .. note::
 
@@ -1245,7 +1245,7 @@ If a boiler is specified, additional information is entered in ``HeatingSystem``
   .. [#] For in-unit boilers, HVACDistribution type must be HydronicDistribution (type: "radiator", "baseboard", "radiant floor", or "radiant ceiling") or DSE.
          For shared boilers, HVACDistribution type must be HydronicDistribution (type: "radiator", "baseboard", "radiant floor", "radiant ceiling", or "water loop") or AirDistribution (type: "fan coil").
          If the shared boiler has "water loop" distribution, a :ref:`hvac_heatpump_wlhp` must also be specified.
-         
+
 
 If an in-unit boiler if specified, additional information is entered in ``HeatingSystem``.
 
@@ -1271,7 +1271,7 @@ If instead a shared boiler is specified, additional information is entered in ``
   ============================================================  ========  ===========  ===========  ========  ========  =========================
 
   .. [#] If ElectricAuxiliaryEnergy nor SharedLoopWatts provided, defaults as follows:
-  
+
          - **Shared boiler w/ baseboard**: 220 kWh/yr
          - **Shared boiler w/ water loop heat pump**: 265 kWh/yr
          - **Shared boiler w/ fan coil**: 438 kWh/yr
@@ -1392,7 +1392,7 @@ Note that a room air conditioner with reverse cycle heating should be entered as
   ``IntegratedHeatingSystemFractionHeatLoadServed``                   double  frac    0 - 1 [#]_   Yes                  Fraction of heating load served
   ==================================================================  ======  ======  ===========  ========  =========  ============================================
 
-  .. [#] The sum of all ``FractionHeatLoadServed`` (across all HVAC systems) must be less than or equal to 1. 
+  .. [#] The sum of all ``FractionHeatLoadServed`` (across all HVAC systems) must be less than or equal to 1.
 
 Packaged Terminal Air Conditioner
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1421,7 +1421,7 @@ Note that a packaged terminal heat pump should be entered as a heat pump; see :r
   ``IntegratedHeatingSystemFractionHeatLoadServed``                   double  frac    0 - 1 [#]_   Yes                  Fraction of heating load served
   ==================================================================  ======  ======  ===========  ========  =========  ============================================
 
-  .. [#] The sum of all ``FractionHeatLoadServed`` (across all HVAC systems) must be less than or equal to 1. 
+  .. [#] The sum of all ``FractionHeatLoadServed`` (across all HVAC systems) must be less than or equal to 1.
 
 Evaporative Cooler
 ~~~~~~~~~~~~~~~~~~
@@ -1467,7 +1467,7 @@ If a mini-split air conditioner is specified, additional information is entered 
 .. note::
 
   Mini-splits do not have a ``CompressorType`` input because they are assumed to be inverter driven (variable speed).
- 
+
 .. _hvac_cooling_chiller:
 
 Chiller
@@ -1490,7 +1490,7 @@ If a chiller is specified, additional information is entered in ``CoolingSystem`
   .. [#] HVACDistribution type must be HydronicDistribution (type: "radiator", "baseboard", "radiant floor", "radiant ceiling", or "water loop") or AirDistribution (type: "fan coil").
          If the chiller has "water loop" distribution, a :ref:`hvac_heatpump_wlhp` must also be specified.
   .. [#] FanCoilWatts only required if chiller connected to fan coil.
-  
+
 .. note::
 
   Chillers are modeled as central air conditioners with a SEER equivalent using the equation from `ANSI/RESNET/ICC 301-2019 <https://codes.iccsafe.org/content/RESNETICC3012019>`_.
@@ -1513,7 +1513,7 @@ If a cooling tower is specified, additional information is entered in ``CoolingS
 
   .. [#] HVACDistribution type must be HydronicDistribution (type: "water loop").
          A :ref:`hvac_heatpump_wlhp` must also be specified.
-  
+
 .. note::
 
   Cooling towers w/ water loop heat pumps are modeled as central air conditioners with a SEER equivalent using the equation from `ANSI/RESNET/ICC 301-2019 <https://codes.iccsafe.org/content/RESNETICC3012019>`_.
@@ -1562,10 +1562,10 @@ If a backup type of "separate" is provided, additional information is entered in
   =============================================================================  ========  ======  ===========  ========  =========  ==========================================
   Element                                                                        Type      Units   Constraints  Required  Default    Notes
   =============================================================================  ========  ======  ===========  ========  =========  ==========================================
-  ``BackupSystem``                                                               idref             See [#]_     Yes                  ID of separate backup heating system 
+  ``BackupSystem``                                                               idref             See [#]_     Yes                  ID of separate backup heating system
   ``BackupHeatingSwitchoverTemperature``                                         double    F                    No        <none>     Separate backup heating system switchover temperature [#]_
   =============================================================================  ========  ======  ===========  ========  =========  ==========================================
-  
+
   .. [#] BackupSystem must reference a ``HeatingSystem``.
   .. [#] Provide BackupHeatingSwitchoverTemperature for a situation where there is a discrete outdoor temperature when the heat pump stops operating and the backup heating system starts operating.
          If not provided, the backup heating system will operate as needed for hours when the heat pump has insufficient capacity.
@@ -1677,7 +1677,7 @@ If a packaged terminal heat pump is specified, additional information is entered
   .. [#] The sum of all ``FractionCoolLoadServed`` (across all HVAC systems) must be less than or equal to 1.
 
 .. _room_ac_reverse_cycle:
-  
+
 Room Air Conditioner w/ Reverse Cycle
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1777,7 +1777,7 @@ If any HVAC systems are specified, a single thermostat is entered as a ``/HPXML/
   Element                                                  Type      Units  Constraints  Required  Default    Notes
   =======================================================  ========  =====  ===========  ========  =========  ========================================
   ``SystemIdentifier``                                     id                            Yes                  Unique identifier
-  ``HeatingSeason``                                        element                       No        See [#]_   Heating season        
+  ``HeatingSeason``                                        element                       No        See [#]_   Heating season
   ``CoolingSeason``                                        element                       No        See [#]_   Cooling season
   ``extension/CeilingFanSetpointTempCoolingSeasonOffset``  double    F      >= 0         No        0          Cooling setpoint temperature offset [#]_
   =======================================================  ========  =====  ===========  ========  =========  ========================================
@@ -1873,7 +1873,7 @@ Each separate HVAC distribution system is entered as a ``/HPXML/Building/Buildin
   .. [#] ConditionedFloorAreaServed required only when DistributionSystemType is AirDistribution and duct surface area is defaulted (i.e., ``AirDistribution/Ducts`` are present without ``DuctSurfaceArea`` child elements).
 
 .. note::
-  
+
   There should be at most one heating system and one cooling system attached to a distribution system.
   See :ref:`hvac_heating`, :ref:`hvac_cooling`, and :ref:`hvac_heatpump` for information on which DistributionSystemType is allowed for which HVAC system.
   Also note that some HVAC systems (e.g., room air conditioners) are not allowed to be attached to a distribution system.
@@ -1894,7 +1894,7 @@ To define an air distribution system, additional information is entered in ``HVA
   ``Ducts``                                      element           >= 0         No                   Supply/return ducts [#]_
   ``NumberofReturnRegisters``                    integer           >= 0         No        See [#]_   Number of return registers
   =============================================  =======  =======  ===========  ========  =========  ==========================
-  
+
   .. [#] AirDistributionType choices are "regular velocity", "gravity", or "fan coil" and are further restricted based on attached HVAC system type (e.g., only "regular velocity" or "gravity" for a furnace, only "fan coil" for a shared boiler, etc.).
   .. [#] Supply duct leakage required if AirDistributionType is "regular velocity" or "gravity" and optional if AirDistributionType is "fan coil".
   .. [#] Return duct leakage required if AirDistributionType is "regular velocity" or "gravity" and optional if AirDistributionType is "fan coil".
@@ -1910,7 +1910,7 @@ Additional information is entered in each ``DuctLeakageMeasurement``.
   ``DuctLeakage/Value``             double            >= 0 [#]_    Yes                  Duct leakage value [#]_
   ``DuctLeakage/TotalOrToOutside``  string            See [#]_     Yes                  Type of duct leakage (outside conditioned space vs total)
   ================================  =======  =======  ===========  ========  =========  =========================================================
-  
+
   .. [#] Units choices are "CFM25", "CFM50", or "Percent".
   .. [#] Value also must be < 1 if Units is Percent.
   .. [#] If the HVAC system has no return ducts (e.g., a ducted evaporative cooler), use zero for the Value.
@@ -1988,7 +1988,7 @@ Each ventilation fan system is entered as a ``/HPXML/Building/BuildingDetails/Sy
   ``SystemIdentifier``                                                                                                                           id                              Yes                  Unique identifier
   ``UsedForWholeBuildingVentilation`` or ``UsedForLocalVentilation`` or ``UsedForSeasonalCoolingLoadReduction`` or ``UsedForGarageVentilation``  boolean            See [#]_     See [#]_             Ventilation fan use case
   =============================================================================================================================================  ========  =======  ===========  ========  =========  ========================
-  
+
   .. [#] One (and only one) of the ``UsedFor...`` elements must have a value of true.
          If UsedForWholeBuildingVentilation is true, see :ref:`wholeventilation`.
          If UsedForLocalVentilation is true, see :ref:`localventilation`.
@@ -2023,7 +2023,7 @@ If not entered, the simulation will not include mechanical ventilation.
          For a CFIS system, the HoursInOperation and the flow rate are combined to form the hourly target ventilation rate (e.g., inputs of 90 cfm and 8 hrs/day produce an hourly target ventilation rate of 30 cfm).
          For a CFIS system with a supplemental fan, the supplemental fan's runtime is automatically calculated for each hour (based on the air handler runtime) to maintain the hourly target ventilation rate.
   .. [#] If FanPower not provided, defaults based on `ANSI/RESNET/ICC 301-2019 <https://codes.iccsafe.org/content/RESNETICC3012019>`_:
-         
+
          - "energy recovery ventilator", "heat recovery ventilator", or shared system: 1.0 W/cfm
          - "balanced": 0.7 W/cfm
          - "central fan integrated supply": 0.5 W/cfm
@@ -2199,7 +2199,7 @@ If not entered, the simulation will not include water heating.
   .. [#] Location choices are "living space", "basement - unconditioned", "basement - conditioned", "attic - unvented", "attic - vented", "garage", "crawlspace - unvented", "crawlspace - vented", "crawlspace - conditioned", "other exterior", "other housing unit", "other heated space", "other multifamily buffer space", or "other non-freezing space".
          See :ref:`hpxmllocations` for descriptions.
   .. [#] If Location not provided, defaults to the first present space type:
-  
+
          - **IECC zones 1-3, excluding 3A**: "garage", "living space"
          - **IECC zones 3A, 4-8, unknown**: "basement - conditioned", "basement - unconditioned", "living space"
 
@@ -2226,7 +2226,7 @@ If a conventional storage water heater is specified, additional information is e
   ``WaterHeaterInsulation/Jacket/JacketRValue``  double             F-ft2-hr/Btu   >= 0             No        0         R-value of additional tank insulation wrap
   ``extension/TankModelType``                    string                            See [#]_         No        mixed     Tank model type
   =============================================  =================  =============  ===============  ========  ========  =============================================
-  
+
   .. [#] FuelType choices are "natural gas", "fuel oil", "fuel oil 1", "fuel oil 2", "fuel oil 4", "fuel oil 5/6", "diesel", "propane", "kerosene", "coal", "coke", "bituminous coal", "anthracite coal", "electricity", "wood", or "wood pellets".
   .. [#] If TankVolume not provided, defaults based on Table 8 in the `2014 BAHSP <https://www.energy.gov/sites/prod/files/2014/03/f13/house_simulation_protocols_2014.pdf>`_.
   .. [#] If HeatingCapacity not provided, defaults based on Table 8 in the `2014 BAHSP <https://www.energy.gov/sites/prod/files/2014/03/f13/house_simulation_protocols_2014.pdf>`_.
@@ -2236,11 +2236,11 @@ If a conventional storage water heater is specified, additional information is e
          If FirstHourRating provided and UsageBin not provided, UsageBin is determined based on the FirstHourRating value.
   .. [#] RecoveryEfficiency must also be greater than the EnergyFactor (or UniformEnergyFactor).
   .. [#] If RecoveryEfficiency not provided, defaults as follows based on a regression analysis of `AHRI certified water heaters <https://www.ahridirectory.org/NewSearch?programId=24&searchTypeId=3>`_:
-  
+
          - **Electric**: 0.98
          - **Non-electric, EnergyFactor < 0.75**: 0.252 * EnergyFactor + 0.608
          - **Non-electric, EnergyFactor >= 0.75**: 0.561 * EnergyFactor + 0.439
- 
+
   .. [#] TankModelType choices are "mixed" or "stratified".
 
 Tankless
@@ -2255,7 +2255,7 @@ If an instantaneous tankless water heater is specified, additional information i
   ``PerformanceAdjustment``                    double   frac                       No            See [#]_  Multiplier on efficiency, typically to account for cycling
   ``UniformEnergyFactor`` or ``EnergyFactor``  double   frac          < 1          Yes                     EnergyGuide label rated efficiency
   ===========================================  =======  ============  ===========  ============  ========  ==========================================================
-  
+
   .. [#] FuelType choices are "natural gas", "fuel oil", "fuel oil 1", "fuel oil 2", "fuel oil 4", "fuel oil 5/6", "diesel", "propane", "kerosene", "coal", "coke", "bituminous coal", "anthracite coal", "electricity", "wood", or "wood pellets".
   .. [#] If PerformanceAdjustment not provided, defaults to 0.94 (UEF) or 0.92 (EF) based on `ANSI/RESNET/ICC 301-2019 <https://codes.iccsafe.org/content/RESNETICC3012019>`_.
 
@@ -2327,7 +2327,7 @@ If the water heater uses a desuperheater, additional information is entered in `
   .. [#] RelatedHVACSystem must reference a ``HeatPump`` (air-to-air, mini-split, or ground-to-air) or ``CoolingSystem`` (central air conditioner or mini-split).
 
   .. warning::
-    
+
     A desuperheater is currently not allow if detailed water heater setpoint schedules are used.
 
 HPXML Hot Water Distribution
@@ -2492,7 +2492,7 @@ To define a simple solar hot water system, additional information is entered in 
   ``SolarFraction``  double   frac   0 - 1        Yes                 Solar fraction [#]_
   ``ConnectedTo``    idref           See [#]_     No [#]_   <none>    Connected water heater
   =================  =======  =====  ===========  ========  ========  ======================
-  
+
   .. [#] Portion of total conventional hot water heating load (delivered energy plus tank standby losses).
          Can be obtained from `Directory of SRCC OG-300 Solar Water Heating System Ratings <https://solar-rating.org/programs/og-300-program/>`_ or NREL's `System Advisor Model <https://sam.nrel.gov/>`_ or equivalent.
   .. [#] ConnectedTo must reference a ``WaterHeatingSystem``.
@@ -2517,7 +2517,7 @@ To define a detailed solar hot water system, additional information is entered i
   ``StorageVolume``                                 double             gal               > 0                  No        See [#]_  Hot water storage volume
   ``ConnectedTo``                                   idref                                See [#]_             Yes                 Connected water heater
   ================================================  =================  ================  ===================  ========  ========  ==============================
-  
+
   .. [#] CollectorLoopType choices are "liquid indirect", "liquid direct", or "passive thermosyphon".
   .. [#] CollectorType choices are "single glazing black", "double glazing black", "evacuated tube", or "integrated collector storage".
   .. [#] CollectorOrientation choices are "northeast", "east", "southeast", "south", "southwest", "west", "northwest", or "north"
@@ -2549,7 +2549,7 @@ Many of the inputs are adopted from the `PVWatts model <https://pvwatts.nrel.gov
   ``SystemLossesFraction`` or ``YearModulesManufactured``  double or integer  frac or #         0 - 1 or > 1600      No        0.14      System losses [#]_
   ``extension/NumberofBedroomsServed``                     integer                              > 1                  See [#]_            Number of bedrooms served
   =======================================================  =================  ================  ===================  ========  ========  ============================================
-  
+
   .. [#] Location choices are "ground" or "roof" mounted.
   .. [#] ModuleType choices are "standard", "premium", or "thin film".
   .. [#] Tracking choices are "fixed", "1-axis", "1-axis backtracked", or "2-axis".
@@ -2839,7 +2839,7 @@ If not entered, the simulation will not include a dehumidifier.
   ``DehumidistatSetpoint``                        double      frac        0 - 1 [#]_   Yes                Relative humidity setpoint
   ``FractionDehumidificationLoadServed``          double      frac        0 - 1 [#]_   Yes                Fraction of dehumidification load served
   ==============================================  ==========  ==========  ===========  ========  =======  ========================================
-  
+
   .. [#] Type choices are "portable" or "whole-home".
   .. [#] Location only choice is "living space".
   .. [#] If multiple dehumidifiers are entered, they must all have the same setpoint or an error will be generated.
@@ -3053,7 +3053,7 @@ If not entered, the simulation will not include a pool heater.
   .. [#] Type choices are "none, "gas fired", "electric resistance", or "heat pump".
          If "none" is entered, the simulation will not include a pool heater.
   .. [#] If Value not provided, defaults as follows:
-         
+
          - **gas fired**: 3.0 / 0.014 * (0.5 + 0.25 * NumberofBedrooms / 3 + 0.25 * ConditionedFloorArea / 1920) (based on the `2010 BAHSP <https://www1.eere.energy.gov/buildings/publications/pdfs/building_america/house_simulation.pdf>`_)
          - **electric resistance**: 8.3 / 0.004 * (0.5 + 0.25 * NumberofBedrooms / 3 + 0.25 * ConditionedFloorArea / 1920) (based on the `2010 BAHSP <https://www1.eere.energy.gov/buildings/publications/pdfs/building_america/house_simulation.pdf>`_)
          - **heat pump**: (electric resistance) / 5.0 (based on an average COP of 5 from `Energy Saver <https://www.energy.gov/energysaver/heat-pump-swimming-pool-heaters>`_)
@@ -3125,7 +3125,7 @@ If not entered, the simulation will not include a hot tub heater.
   .. [#] Type choices are "none, "gas fired", "electric resistance", or "heat pump".
          If "none" is entered, the simulation will not include a hot tub heater.
   .. [#] If Value not provided, defaults as follows:
-         
+
          - **gas fired [therm/year]**: 0.87 / 0.011 * (0.5 + 0.25 * NumberofBedrooms / 3 + 0.25 * ConditionedFloorArea / 1920) (based on the `2010 BAHSP <https://www1.eere.energy.gov/buildings/publications/pdfs/building_america/house_simulation.pdf>`_)
          - **electric resistance [kWh/year]**: 49.0 / 0.048 * (0.5 + 0.25 * NumberofBedrooms / 3 + 0.25 * ConditionedFloorArea / 1920) (based on the `2010 BAHSP <https://www1.eere.energy.gov/buildings/publications/pdfs/building_america/house_simulation.pdf>`_)
          - **heat pump [kWh/year]** = (electric resistance) / 5.0 (based on an average COP of 5 from `Energy Saver <https://www.energy.gov/energysaver/heat-pump-swimming-pool-heaters>`_)
@@ -3166,16 +3166,16 @@ If not entered, the simulation will not include that type of plug load.
 
   .. [#] PlugLoadType choices are "other", "TV other", "well pump", or "electric vehicle charging".
   .. [#] If Value not provided, defaults as:
-         
+
          - **other**: 0.91 * ConditionedFloorArea (based on `ANSI/RESNET/ICC 301-2019 <https://codes.iccsafe.org/content/RESNETICC3012019>`_)
          - **TV other**: 413.0 + 69.0 * NumberofBedrooms (based on `ANSI/RESNET/ICC 301-2019 <https://codes.iccsafe.org/content/RESNETICC3012019>`_)
          - **well pump**: 50.8 / 0.127 * (0.5 + 0.25 * NumberofBedrooms / 3 + 0.25 * ConditionedFloorArea / 1920) (based on the `2010 BAHSP <https://www1.eere.energy.gov/buildings/publications/pdfs/building_america/house_simulation.pdf>`_)
          - **electric vehicle charging**: 1666.67 (calculated using AnnualMiles * kWhPerMile / (ChargerEfficiency * BatteryEfficiency) where AnnualMiles=4500, kWhPerMile=0.3, ChargerEfficiency=0.9, and BatteryEfficiency=0.9)
-         
+
          If OccupancyCalculationType is "operational", this value will be adjusted for the NumberofResidents.
-         
+
   .. [#] If FracSensible not provided, defaults as:
-  
+
          - **other**: 0.855
          - **TV other**: 1.0
          - **well pump**: 0.0
@@ -3190,7 +3190,7 @@ If not entered, the simulation will not include that type of plug load.
          - **electric vehicle charging**: 0.0
 
   .. [#] If WeekdayScheduleFractions not provided (and :ref:`detailedschedules` not used), defaults as:
-         
+
          - **other**: "0.035, 0.033, 0.032, 0.031, 0.032, 0.033, 0.037, 0.042, 0.043, 0.043, 0.043, 0.044, 0.045, 0.045, 0.044, 0.046, 0.048, 0.052, 0.053, 0.05, 0.047, 0.045, 0.04, 0.036" (based on Figure 23 of the `2010 BAHSP <https://www1.eere.energy.gov/buildings/publications/pdfs/building_america/house_simulation.pdf>`_)
          - **TV other**: "0.037, 0.018, 0.009, 0.007, 0.011, 0.018, 0.029, 0.040, 0.049, 0.058, 0.065, 0.072, 0.076, 0.086, 0.091, 0.102, 0.127, 0.156, 0.210, 0.294, 0.363, 0.344, 0.208, 0.090" (based on the `American Time Use Survey <https://www.bls.gov/tus>`_)
          - **well pump**: "0.044, 0.023, 0.019, 0.015, 0.016, 0.018, 0.026, 0.033, 0.033, 0.032, 0.033, 0.033, 0.032, 0.032, 0.032, 0.033, 0.045, 0.057, 0.066, 0.076, 0.081, 0.086, 0.075, 0.065" (based on Figure 23 of the `2010 BAHSP <https://www1.eere.energy.gov/buildings/publications/pdfs/building_america/house_simulation.pdf>`_)
@@ -3239,7 +3239,7 @@ If not entered, the simulation will not include that type of fuel load.
          - **grill**: 0.87 / 0.029 * (0.5 + 0.25 * NumberofBedrooms / 3 + 0.25 * ConditionedFloorArea / 1920)
          - **fireplace**: 1.95 / 0.032 * (0.5 + 0.25 * NumberofBedrooms / 3 + 0.25 * ConditionedFloorArea / 1920)
          - **lighting**: 0.22 / 0.012 * (0.5 + 0.25 * NumberofBedrooms / 3 + 0.25 * ConditionedFloorArea / 1920)
-         
+
          If OccupancyCalculationType is "operational", this value will be adjusted for the NumberofResidents.
 
   .. [#] FuelType choices are "natural gas", "fuel oil", "fuel oil 1", "fuel oil 2", "fuel oil 4", "fuel oil 5/6", "diesel", "propane", "kerosene", "coal", "coke", "bituminous coal", "anthracite coal", "wood", or "wood pellets".

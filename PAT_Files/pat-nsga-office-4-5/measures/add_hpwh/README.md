@@ -8,8 +8,8 @@
 This measure adds or replaces existing domestic hot water heater with air source heat pump system and allows for the addition of multiple daily flexible control time windows. The heater/tank system may charge at maximum capacity up to an elevated temperature, or float without any heat addition for a specified timeframe down to a minimum tank temperature.
 
 ## Modeler Description
-This measure allows selection between three heat pump water heater modeling approaches in EnergyPlus.The user may select between the pumped-condenser or wrapped-condenser objects. They may also elect to use a simplified calculation which does not use the heat pump objects, but instead used an electric resistance heater and approximates the equivalent electrical input that would be required from a heat pump. This expedites simulation at the expense of accuracy. 
-The flexibility of the system is based on user-defined temperatures and times, which are converted into schedule objects. There are four flexibility options. (1) None: normal operation of the DHW system at a fixed tank temperature setpoint. (2) Charge - Heat Pump: the tank is charged to a maximum temperature using only the heat pump. (3) Charge - Electric: the tank is charged using internal electric resistance heaters to a maximum temperature. (4) Float: all heating elements are turned-off for a user-defined time period unless the tank temperature falls below a minimum value. The heat pump will be prioritized in a low tank temperature event, with the electric resistance heaters serving as back-up. 
+This measure allows selection between three heat pump water heater modeling approaches in EnergyPlus.The user may select between the pumped-condenser or wrapped-condenser objects. They may also elect to use a simplified calculation which does not use the heat pump objects, but instead used an electric resistance heater and approximates the equivalent electrical input that would be required from a heat pump. This expedites simulation at the expense of accuracy.
+The flexibility of the system is based on user-defined temperatures and times, which are converted into schedule objects. There are four flexibility options. (1) None: normal operation of the DHW system at a fixed tank temperature setpoint. (2) Charge - Heat Pump: the tank is charged to a maximum temperature using only the heat pump. (3) Charge - Electric: the tank is charged using internal electric resistance heaters to a maximum temperature. (4) Float: all heating elements are turned-off for a user-defined time period unless the tank temperature falls below a minimum value. The heat pump will be prioritized in a low tank temperature event, with the electric resistance heaters serving as back-up.
 
 
 ## Measure Type
@@ -180,7 +180,3 @@ Applies every day in the full run period.
 **Units:** ,
 **Required:** false,
 **Model Dependent:** false
-
-
-
-

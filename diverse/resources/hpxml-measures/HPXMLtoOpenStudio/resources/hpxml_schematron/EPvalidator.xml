@@ -2,7 +2,7 @@
 <sch:schema xmlns:sch='http://purl.oclc.org/dsdl/schematron'>
   <sch:title>HPXML Schematron Validator: EnergyPlus Simulation</sch:title>
   <sch:ns uri='http://hpxmlonline.com/2019/10' prefix='h'/>
-  
+
   <sch:pattern>
     <sch:title>[Root]</sch:title>
     <sch:rule context='/h:HPXML'>
@@ -10,7 +10,7 @@
       <sch:assert role='ERROR' test='count(h:Building) &gt;= 1'>Expected 1 or more element(s) for xpath: Building</sch:assert> <!-- See [Building] -->
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[SoftwareInfo]</sch:title>
     <sch:rule context='/h:HPXML/h:SoftwareInfo'>
@@ -26,7 +26,7 @@
       <sch:assert role='ERROR' test='count(h:extension/h:UtilityBillScenarios/h:UtilityBillScenario) &gt;= 0'>Expected 0 or more element(s) for xpath: extension/UtilityBillScenarios/UtilityBillScenario</sch:assert> <!-- See [UtilityBillScenario] -->
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[SimulationControl]</sch:title>
     <sch:rule context='/h:HPXML/h:SoftwareInfo/h:extension/h:SimulationControl'>
@@ -40,7 +40,7 @@
       <sch:assert role='ERROR' test='count(h:TemperatureCapacitanceMultiplier) &lt;= 1'>Expected 0 or 1 element(s) for xpath: TemperatureCapacitanceMultiplier</sch:assert>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[HVACSizingControl]</sch:title>
     <sch:rule context='/h:HPXML/h:SoftwareInfo/h:extension/h:HVACSizingControl'>
@@ -248,8 +248,8 @@
       <sch:report role='WARN' test='count(h:Appliances/h:CookingRange) = 0'>No cooking range specified, the model will not include cooking range/oven energy use.</sch:report>
       <sch:report role='WARN' test='count(h:Lighting) = 0'>No lighting specified, the model will not include lighting energy use.</sch:report>
     </sch:rule>
-  </sch:pattern>  
-  
+  </sch:pattern>
+
   <sch:pattern>
     <sch:title>[Site]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:BuildingSummary/h:Site'>
@@ -374,7 +374,7 @@
       <sch:assert role='ERROR' test='count(../../h:Attics/h:Attic[h:AtticType/h:Attic[h:Vented="true"]]/h:VentilationRate[h:UnitofMeasure="SLA" or h:UnitofMeasure="ACHnatural"]/h:Value) &lt;= 1'>Expected 0 or 1 element(s) for xpath: ../../Attics/Attic[AtticType/Attic[Vented="true"]]/VentilationRate[UnitofMeasure="SLA" or UnitofMeasure="ACHnatural"]/Value</sch:assert>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[RadiantBarrier]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Enclosure/h:Roofs/h:Roof[h:RadiantBarrier="true"]'>
@@ -529,7 +529,7 @@
       <sch:assert role='ERROR' test='count(h:AttachedToWall) = 1'>Expected 1 element(s) for xpath: AttachedToWall</sch:assert>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[Window=PhysicalProperties]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Enclosure/h:Windows/h:Window[not(h:UFactor) and h:GlassLayers[text()="single-pane" or text()="double-pane" or text()="triple-pane"]]'>
@@ -628,7 +628,7 @@
       <sch:assert role='ERROR' test='count(h:RValue) = 1'>Expected 1 element(s) for xpath: RValue</sch:assert>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[PartitionWallMass]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Enclosure/h:extension/h:PartitionWallMass'>
@@ -639,7 +639,7 @@
       <sch:assert role='ERROR' test='count(h:InteriorFinish/h:Thickness) &lt;= 1'>Expected 0 or 1 element(s) for xpath: InteriorFinish/Thickness</sch:assert>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[FurnitureMass]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Enclosure/h:extension/h:FurnitureMass'>
@@ -649,7 +649,7 @@
       <sch:assert role='ERROR' test='h:Type[text()="light-weight" or text()="heavy-weight"] or not(h:Type)'>Expected Type to be 'light-weight' or 'heavy-weight'</sch:assert>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[HeatingSystem]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Systems/h:HVAC/h:HVACPlant/h:HeatingSystem'>
@@ -673,7 +673,7 @@
       <sch:report role='WARN' test='number(h:HeatingCapacity) &lt;= 1000 and number(h:HeatingCapacity) &gt; 0 and h:HeatingCapacity'>Heating capacity should typically be greater than or equal to 1000 Btu/hr.</sch:report>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[HeatingSystemType=Furnace]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Systems/h:HVAC/h:HVACPlant/h:HeatingSystem[h:HeatingSystemType/h:Furnace]'>
@@ -773,7 +773,7 @@
       <sch:assert role='ERROR' test='number(h:extension/h:FanCoilWatts) &gt;= 0 or not(h:extension/h:FanCoilWatts)'>Expected extension/FanCoilWatts to be greater than or equal to 0</sch:assert>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[HeatingSystemType=SharedBoilerWithWLHP]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Systems/h:HVAC/h:HVACPlant/h:HeatingSystem[h:HeatingSystemType/h:Boiler and h:IsSharedSystem="true" and ../../h:HVACDistribution/h:DistributionSystemType/h:HydronicDistribution/h:HydronicDistributionType[text()="water loop"]]'>
@@ -1113,7 +1113,7 @@
       <sch:report role='WARN' test='number(h:CoolingCapacity) &lt;= 1000 and number(h:CoolingCapacity) &gt; 0 and h:CoolingCapacity'>Cooling capacity should typically be greater than or equal to 1000 Btu/hr.</sch:report>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[HeatPumpType=GroundSourceWithSharedLoop]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Systems/h:HVAC/h:HVACPlant/h:HeatPump[h:HeatPumpType="ground-to-air" and h:IsSharedSystem="true"]'>
@@ -1150,7 +1150,7 @@
       <sch:report role='WARN' test='number(h:CoolingCapacity) &lt;= 1000 and number(h:CoolingCapacity) &gt; 0 and h:CoolingCapacity'>Cooling capacity should typically be greater than or equal to 1000 Btu/hr.</sch:report>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[HeatPumpBackup=Integrated]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Systems/h:HVAC/h:HVACPlant/h:HeatPump[h:BackupType="integrated" or h:BackupSystemFuel]'>
@@ -1240,7 +1240,7 @@
 
   <sch:pattern>
     <sch:title>[HVACControl=CoolingSeason]</sch:title>
-    <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Systems/h:HVAC/h:HVACControl/h:CoolingSeason'>      
+    <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Systems/h:HVAC/h:HVACControl/h:CoolingSeason'>
       <sch:assert role='ERROR' test='count(h:BeginMonth) = 1'>Expected 1 element(s) for xpath: BeginMonth</sch:assert> <!-- integer -->
       <sch:assert role='ERROR' test='count(h:BeginDayOfMonth) = 1'>Expected 1 element(s) for xpath: BeginDayOfMonth</sch:assert> <!-- integer -->
       <sch:assert role='ERROR' test='count(h:EndMonth) = 1'>Expected 1 element(s) for xpath: EndMonth</sch:assert> <!-- integer -->
@@ -1270,7 +1270,7 @@
       <sch:report role='WARN' test='sum(h:DuctLeakageMeasurement/h:DuctLeakage[h:Units="Percent" and h:TotalOrToOutside="to outside"]/h:Value) &gt; 0.05 and sum(h:Ducts[h:DuctLocation[text()!="living space" and text()!="basement - conditioned" and text()!="crawlspace - conditioned"]]/h:FractionDuctArea) = 0 and sum(h:Ducts[h:DuctLocation[text()!="living space" and text()!="basement - conditioned" and text()!="crawlspace - conditioned"]]/h:DuctSurfaceArea) = 0 and count(h:Ducts[h:FractionDuctArea | h:DuctSurfaceArea]) &gt; 0'>Ducts are entirely within conditioned space but there is moderate leakage to the outside. Leakage to the outside is typically zero or near-zero in these situations, consider revising leakage values. Leakage will be modeled as heat lost to the ambient environment.</sch:report>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[AirDistributionType=RegularVelocityOrGravity]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Systems/h:HVAC/h:HVACDistribution/h:DistributionSystemType/h:AirDistribution[h:AirDistributionType[text()="regular velocity" or text()="gravity"]]'>
@@ -1605,7 +1605,7 @@
       <sch:assert role='ERROR' test='count(h:SystemType/h:Standard) + count(h:SystemType/h:Recirculation) = 1'>Expected 1 element(s) for xpath: SystemType/Standard | SystemType/Recirculation</sch:assert> <!-- See [HotWaterDistributionType=Standard] or [HotWaterDistributionType=Recirculation] -->
       <sch:assert role='ERROR' test='count(h:PipeInsulation/h:PipeRValue) &lt;= 1'>Expected 0 or 1 element(s) for xpath: PipeInsulation/PipeRValue</sch:assert>
       <sch:assert role='ERROR' test='count(h:DrainWaterHeatRecovery) &lt;= 1'>Expected 0 or 1 element(s) for xpath: DrainWaterHeatRecovery</sch:assert> <!-- See [DrainWaterHeatRecovery] -->
-      <sch:assert role='ERROR' test='count(h:extension/h:SharedRecirculation) &lt;= 1'>Expected 0 or 1 element(s) for xpath: extension/SharedRecirculation</sch:assert> <!-- See [HotWaterDistributionType=SharedRecirculation] --> 
+      <sch:assert role='ERROR' test='count(h:extension/h:SharedRecirculation) &lt;= 1'>Expected 0 or 1 element(s) for xpath: extension/SharedRecirculation</sch:assert> <!-- See [HotWaterDistributionType=SharedRecirculation] -->
     </sch:rule>
   </sch:pattern>
 
@@ -2014,7 +2014,7 @@
       <sch:assert role='ERROR' test='count(h:extension/h:MonthlyScheduleMultipliers) &lt;= 1'>Expected 0 or 1 element(s) for xpath: extension/MonthlyScheduleMultipliers</sch:assert>
     </sch:rule>
   </sch:pattern>
-  
+
   <sch:pattern>
     <sch:title>[PoolHeater]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails/h:Pools/h:Pool/h:Heater'>
@@ -2095,7 +2095,7 @@
       <sch:assert role='ERROR' test='count(h:extension/h:MonthlyScheduleMultipliers) &lt;= 1'>Expected 0 or 1 element(s) for xpath: extension/MonthlyScheduleMultipliers</sch:assert>
     </sch:rule>
   </sch:pattern>
-  
+
   <!-- Rules below check that the different space types are appropriately enclosed by surfaces -->
 
   <sch:pattern>
@@ -2174,9 +2174,9 @@
       <sch:assert role='ERROR' test='count(h:Floors/h:Floor[h:InteriorAdjacentTo="attic - unvented" or h:ExteriorAdjacentTo="attic - unvented"]) &gt;= 1'>There must be at least one floor adjacent to "attic - unvented".</sch:assert>
     </sch:rule>
   </sch:pattern>
-  
+
   <!-- Rules below check that the specified appliance, water heater, or duct location exists in the building -->
-  
+
   <sch:pattern>
     <sch:title>[LocationCheck=ConditionedBasement]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails[h:Appliances/*[h:Location="basement - conditioned"] | h:Systems/*/*[h:Location="basement - conditioned"] | h:Systems/*/*/*/*/*[h:DuctLocation="basement - conditioned"]]'>
@@ -2232,9 +2232,9 @@
       <sch:assert role='ERROR' test='count(h:Enclosure/*/*[h:InteriorAdjacentTo="attic - unvented" or h:ExteriorAdjacentTo="attic - unvented"]) &gt;= 1'>A location is specified as "attic - unvented" but no surfaces were found adjacent to this space type.</sch:assert>
     </sch:rule>
   </sch:pattern>
-  
+
   <!-- Rules below check for the appropriate building type when there are objects referencing SFA/MF locations -->
-  
+
   <sch:pattern>
     <sch:title>[BuildingTypeCheck=OtherHousingUnit]</sch:title>
     <sch:rule context='/h:HPXML/h:Building/h:BuildingDetails[h:Appliances/*[h:Location="other housing unit"] | h:Systems/*/*[h:Location="other housing unit"] | h:Systems/*/*/*/*/*[h:DuctLocation="other housing unit"] | h:Enclosure[*/*[h:InteriorAdjacentTo="other housing unit" or h:ExteriorAdjacentTo="other housing unit"]]]'>

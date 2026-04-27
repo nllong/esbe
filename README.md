@@ -1,6 +1,6 @@
 # ESBE
 
-This project contains the files and scripts that were used during the third ESBE Workshop in Lecco, Italy. 
+This project contains the files and scripts that were used during the third ESBE Workshop in Lecco, Italy.
 
 The best entry point to understanding this project is looking at the `esbe_analysis.ipynb` which scaffolds out the URBANopt class files activity-by-activity.
 
@@ -30,14 +30,14 @@ Looks like it is installing x86_64
 ```
 /Applications/URBANoptCLI_1.1.0/Ruby/bin/ruby: Mach-O 64-bit executable x86_64
 /Applications/URBANoptCLI_1.1.0/ruby/bin/ruby: Mach-O 64-bit executable x86_64
-/Applications/URBANoptCLI_1.1.0/OpenStudio/Ruby/openstudio.bundle: Mach-O 64-bit bundle x86_64        
+/Applications/URBANoptCLI_1.1.0/OpenStudio/Ruby/openstudio.bundle: Mach-O 64-bit bundle x86_64
 
 /Applications/URBANoptCLI_1.2.0/Ruby/bin/ruby: Mach-O 64-bit executable arm64
 /Applications/URBANoptCLI_1.2.0/ruby/bin/ruby: Mach-O 64-bit executable arm64
 /Applications/URBANoptCLI_1.2.0/OpenStudio/Ruby/openstudio.bundle: Mach-O 64-bit bundle x86_64
 ```
 
-Need to fix `base_workflow.osw` to 
+Need to fix `base_workflow.osw` to
 1. Remove story_multiplier
 
 ```
@@ -68,7 +68,7 @@ Need to fix `base_workflow.osw` to
         ^---
  ```
 
-2. Replace this measure 
+2. Replace this measure
 {
       "measure_dir_name": "generic_qaqc",
       "arguments": {
@@ -93,5 +93,5 @@ Need to fix `base_workflow.osw` to
 pip install poetry
 poetry install
 
-jupyter lab 
+jupyter lab
 # or run in VSCode (which is recommended)

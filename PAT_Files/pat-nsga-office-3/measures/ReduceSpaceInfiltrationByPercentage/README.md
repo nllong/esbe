@@ -98,7 +98,3 @@ Setting this to false will result in infiltration objects that maintain the coef
 **Units:** whole years,
 **Required:** true,
 **Model Dependent:** false
-
-
-
-

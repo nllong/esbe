@@ -75,9 +75,3 @@ This will override what is entered in weather file name or from upstream measure
 
 
 **Choice Display Names** ["Do Nothing", "TMY3,AMY", "AMY,TMY3"]
-
-
-
-
-
-

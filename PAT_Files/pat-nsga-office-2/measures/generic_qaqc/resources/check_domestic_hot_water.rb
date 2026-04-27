@@ -51,7 +51,7 @@ module OsLib_QAQC
     end
     check_elems << OpenStudio::Attribute.new('min_pass', min_pass * 100)
     check_elems << OpenStudio::Attribute.new('max_pass', max_pass * 100)
-    
+
     # stop here if only name is requested this is used to populate display name for arguments
     if name_only == true
       results = []

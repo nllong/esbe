@@ -48,7 +48,7 @@ For example, suppose a central air conditioner is described in the HPXML input f
 The ``in.xml`` output file will include autosized HVAC capacities as well as some other details:
 
 .. code-block:: XML
- 
+
   <HVACPlant>
     <CoolingSystem>
       <SystemIdentifier id='CoolingSystem1'/>
@@ -315,7 +315,7 @@ Component loads represent the estimated contribution of different building compo
 The sum of component loads for heating (or cooling) will roughly equal the annual heating (or cooling) building load reported above.
 
 Component loads disaggregated by Heating/Cooling are listed below.
-   
+
    =================================================  =========================================================================================================
    Type                                               Notes
    =================================================  =========================================================================================================
@@ -349,7 +349,7 @@ Annual hot water uses are listed below.
    Hot Water: Clothes Washer (gal)
    Hot Water: Dishwasher (gal)
    Hot Water: Fixtures (gal)            Showers and faucets.
-   Hot Water: Distribution Waste (gal) 
+   Hot Water: Distribution Waste (gal)
    ===================================  ====================
 
 HVAC Capacities

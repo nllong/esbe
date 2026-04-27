@@ -20,5 +20,5 @@ The HPXML files contained in this folder may need to be re-generated due to HPXM
     "template": "Residential IECC 2015 - Customizable Template Sep 2020"
   }
   ```
-  
+
 as well as opening each HPXML file and removing the entire `<SchedulesFilePath>` line. They are then copied (overwritten) back into this folder.

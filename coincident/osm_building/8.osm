@@ -25371,4 +25371,3 @@ OS:Curve:Cubic,
   1.1674,                                 !- Coefficient4 x**3
   0,                                      !- Minimum Value of x
   1.3;                                    !- Maximum Value of x
-

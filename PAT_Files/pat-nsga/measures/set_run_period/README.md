@@ -42,7 +42,3 @@ Simulation end date, YYYY-MM-DD format
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
-
-
-
-

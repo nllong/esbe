@@ -4,7 +4,7 @@
 
 ## Checklist
 
-PR Author: Check these when they're done. Not all may apply. ~~strikethrough~~ and check any that do not apply. 
+PR Author: Check these when they're done. Not all may apply. ~~strikethrough~~ and check any that do not apply.
 
 PR Reviewer: Verify each has been completed.
 

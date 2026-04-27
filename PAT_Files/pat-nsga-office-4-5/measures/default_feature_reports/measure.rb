@@ -310,17 +310,17 @@ class DefaultFeatureReports < OpenStudio::Measure::ReportingMeasure
             result = measure_step.result.get
             puts " result = #{result}"
 
-            ## Adding quaqc_flags_list to check the step value name since units key is missing from the result 
+            ## Adding quaqc_flags_list to check the step value name since units key is missing from the result
             ## It does show in the out.osw but not in the runner.workflow.workflowSteps object
-            # use this list to define the flags you want to report 
+            # use this list to define the flags you want to report
             qaqc_flags_list = ['eui_reasonableness' , 'end_use_by_category',
-            'mechanical_system_part_load_efficiency', 'simultaneous_heating_and_cooling', 
+            'mechanical_system_part_load_efficiency', 'simultaneous_heating_and_cooling',
             'internal_loads', 'schedules', 'envelope_r_value', 'domestic_hot_water',
             'mechanical_system_efficiency', 'supply_and_zone_air_temperature', 'total_qaqc_flags' ]
-            
+
             result.stepValues.each do |step_value|
-              
-              #get name 
+
+              #get name
               name = step_value.name
 
               if qaqc_flags_list.include? name
@@ -340,10 +340,10 @@ class DefaultFeatureReports < OpenStudio::Measure::ReportingMeasure
                   # catchall for unexpected value types
                   value = step_value.valueAsVariant.to_s
                 end
-                
+
                 if qaqc_flags_hash[name]
                   qaqc_flags_hash[name] += value
-                else 
+                else
                   qaqc_flags_hash[name] = value
                 end
 
@@ -359,7 +359,7 @@ class DefaultFeatureReports < OpenStudio::Measure::ReportingMeasure
             qaqc_flags_hash['total_qaqc_flags'] = temp_hash_for_ordering['total_qaqc_flags']
 
           end
-        
+
         end
 
       end
@@ -948,7 +948,7 @@ class DefaultFeatureReports < OpenStudio::Measure::ReportingMeasure
       @@logger.info('Emissions are not reported for this feature')
     end
 
-    # add qaqc results to feature report 
+    # add qaqc results to feature report
     qaqc_flags_hash = feature_qaqc_flags(runner)
     feature_report.qaqc_flags.eui_reasonableness = qaqc_flags_hash['eui_reasonableness']
     feature_report.qaqc_flags.end_use_by_category = qaqc_flags_hash['end_use_by_category']

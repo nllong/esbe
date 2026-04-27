@@ -2,7 +2,7 @@
 
 ###### (Automatically generated documentation)
 
-# 
+#
 
 ## Description
 
@@ -22,5 +22,3 @@ ModelMeasure
 
 
 This measure does not have any user arguments
-
-

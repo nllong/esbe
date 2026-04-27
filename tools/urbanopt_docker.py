@@ -33,7 +33,9 @@ class UrbanoptDockerRunner:
         if gem_key:
             return ["-e", f"GEM_DEVELOPER_KEY={gem_key}"]
 
-        print("GEM_DEVELOPER_KEY is not set; continuing without it but REopt will not work.")
+        print(
+            "GEM_DEVELOPER_KEY is not set; continuing without it but REopt will not work."
+        )
         return []
 
     def build_image(self) -> subprocess.CompletedProcess[str]:
@@ -56,7 +58,11 @@ class UrbanoptDockerRunner:
         if not self.mount_source.exists():
             raise FileNotFoundError(f"Missing mount source: {self.mount_source}")
 
-        target_workdir = self.mount_target if working_dir is None else self.mount_target / working_dir
+        target_workdir = (
+            self.mount_target
+            if working_dir is None
+            else self.mount_target / working_dir
+        )
         cmd = [
             "docker",
             "run",
@@ -72,11 +78,17 @@ class UrbanoptDockerRunner:
         ]
         return subprocess.run(cmd, check=False, text=True, capture_output=True)
 
-    def run_shell(self, command: str, working_dir: str | None = None) -> subprocess.CompletedProcess[str]:
+    def run_shell(
+        self, command: str, working_dir: str | None = None
+    ) -> subprocess.CompletedProcess[str]:
         if not self.mount_source.exists():
             raise FileNotFoundError(f"Missing mount source: {self.mount_source}")
 
-        target_workdir = self.mount_target if working_dir is None else self.mount_target / working_dir
+        target_workdir = (
+            self.mount_target
+            if working_dir is None
+            else self.mount_target / working_dir
+        )
         cmd = [
             "docker",
             "run",
@@ -117,15 +129,27 @@ def main() -> None:
     subparsers.add_parser("build", help="Build the URBANopt Docker image")
 
     run_parser = subparsers.add_parser("run", help="Run a uo command")
-    run_parser.add_argument("uo_args", nargs=argparse.REMAINDER, help="Arguments to pass to uo")
-    run_parser.add_argument("--working-dir", default=None, help="Relative dir inside mounted esbe_2026")
+    run_parser.add_argument(
+        "uo_args", nargs=argparse.REMAINDER, help="Arguments to pass to uo"
+    )
+    run_parser.add_argument(
+        "--working-dir", default=None, help="Relative dir inside mounted esbe_2026"
+    )
 
-    shell_parser = subparsers.add_parser("shell", help="Run a shell command in the container")
-    shell_parser.add_argument("shell_command", help="Shell command executed with bash -lc")
-    shell_parser.add_argument("--working-dir", default=None, help="Relative dir inside mounted esbe_2026")
+    shell_parser = subparsers.add_parser(
+        "shell", help="Run a shell command in the container"
+    )
+    shell_parser.add_argument(
+        "shell_command", help="Shell command executed with bash -lc"
+    )
+    shell_parser.add_argument(
+        "--working-dir", default=None, help="Relative dir inside mounted esbe_2026"
+    )
 
     parsed = parser.parse_args()
-    runner = UrbanoptDockerRunner(image_tag=parsed.image_tag, mount_subdir=parsed.mount_subdir)
+    runner = UrbanoptDockerRunner(
+        image_tag=parsed.image_tag, mount_subdir=parsed.mount_subdir
+    )
 
     if parsed.command == "build":
         result = runner.build_image()

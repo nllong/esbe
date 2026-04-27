@@ -18,7 +18,7 @@ To programatically run simulations, it's recommended to use the OpenStudio `Comm
 Two general approaches (basic and advanced) for running via the CLI are described below.
 The OpenStudio measures can also be run from user interfaces (e.g., the OpenStudio Application or OpenStudio Parametric Analysis Tool (PAT)).
 
-.. note:: 
+.. note::
 
   If the ``openstudio`` command is not found, it's because the executable is not in your PATH. Either add the executable to your PATH or point directly to the executable found in the openstudio-X.X.X/bin directory.
 
@@ -44,7 +44,7 @@ Run ``openstudio workflow/run_simulation.rb -h`` to see all available commands/a
 
 Advanced Run
 ~~~~~~~~~~~~
- 
+
 If additional flexibility is desired (e.g., specifying individual measure arguments, including additional OpenStudio measures to run alongside this measure in a workflow, etc.), create an `OpenStudio Workflow (OSW) <https://nrel.github.io/OpenStudio-user-documentation/reference/command_line_interface/#osw-structure>`_ file.
 The OSW is a JSON file that will specify all the OpenStudio measures (and their arguments) to be run sequentially.
 A template OSW that simply runs the HPXMLtoOpenStudio, ReportSimulationOutput, and ReportUtilityBills measures on the ``workflow/sample_files/base.xml`` file can be found at ``workflow/template-run-hpxml.osw``.

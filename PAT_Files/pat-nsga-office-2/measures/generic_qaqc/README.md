@@ -84,7 +84,7 @@ Check HVAC capacity against ASHRAE rules of thumb for chiller max flow rate, air
 **Model Dependent:** false
 
 ### Simultaneous Heating and Cooling (General)
-Check for simultaneous heating and cooling by looping through all Single Duct VAV Reheat Air Terminals and analyzing hourly data when there is a cooling load. 
+Check for simultaneous heating and cooling by looping through all Single Duct VAV Reheat Air Terminals and analyzing hourly data when there is a cooling load.
 **Name:** check_simultaneous_heating_and_cooling,
 **Type:** Boolean,
 **Units:** ,
@@ -219,5 +219,5 @@ When true this will look for arguments or registerValues in upstream measures th
 ## Screenshot of Sample Summary Table
 ![Summary Table](./docs/generic_qaqc_summary.jpg?raw=true)
 
-## Screenshot of Sample Detailed Table  
+## Screenshot of Sample Detailed Table
 ![Detailed Table](./docs/generic_qaqc_detailed.jpg?raw=true)
