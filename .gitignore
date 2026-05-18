@@ -14,8 +14,7 @@ class_files
 
 # The ESBE folder is
 # dynamically generated from ipynb
-esbe
-esbe_2026
+esbe*
 
 /*/run/*/*
 !/*/run/*/*.csv
