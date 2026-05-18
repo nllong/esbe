@@ -1,0 +1,63 @@
+exclude: |
+  (?x)(
+    ^analysis/seed_to_uo/|
+    ^analysis/urbanopt/
+  )
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-ast
+      - id: check-added-large-files
+        args: ['--maxkb=2000']
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-toml
+      - id: check-yaml
+      - id: check-json
+      - id: name-tests-test
+        args: ["--pytest-test-first"]
+      - id: fix-byte-order-marker
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-xml
+      - id: check-yaml
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: pretty-format-json
+        args: ['--autofix', '--no-sort-keys']
+        exclude: \.ipynb$
+  # https://docs.astral.sh/ruff/integrations/#pre-commit
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.12
+    hooks:
+      # Run the linter
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix, --output-format=full, --unsafe-fixes]
+        types_or: [python, pyi, jupyter]
+      # Run the formatter
+      - id: ruff-format
+        types_or: [python, pyi, jupyter]
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.9.1
+    hooks:
+      - id: nbstripout
+  - repo: local
+    hooks:
+      - id: remove-version-metadata
+        name: remove version metadata from ipynb files
+        entry: python .pre-commit/remove_kernelspec.py
+        language: system
+        types: [jupyter]
+  - repo: local
+    hooks:
+      - id: format-geojson-files
+        name: sort the elements in the geojson file
+        entry: python .pre-commit/format_geojson.py
+        language: system
+        # types: [geojson]
+        files: ^data/.*/.*\.geojson$

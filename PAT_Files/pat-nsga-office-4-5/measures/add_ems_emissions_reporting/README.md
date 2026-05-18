@@ -10,7 +10,7 @@ EnergyPlusMeasure
 
 ## Arguments
 ## Subregion
-Name: sub_regn, Type: string, Units: none, Required: true, Model Dependent: false. This argument is the eGrid subregion. Options are: AZNM, CAMX, ERCT, FRCC, MROE, MROW, NEWE, NWPP, NYST, RFCE, RFCM, RFCW, RMPA, SPNO, SPSO, SRMV, SRMW, SRSO, SRTV, and SRVC. Default is RMPA. 
+Name: sub_regn, Type: string, Units: none, Required: true, Model Dependent: false. This argument is the eGrid subregion. Options are: AZNM, CAMX, ERCT, FRCC, MROE, MROW, NEWE, NWPP, NYST, RFCE, RFCM, RFCW, RMPA, SPNO, SPSO, SRMV, SRMW, SRSO, SRTV, and SRVC. Default is RMPA.
 ## Future Year
 Name: fut_year, Type: integer, Units: none, Required: true, Model Dependent: false. This argument is the future year of interest. Options are: 2020 to 2050 in two year increments. Default is 2030.
 ## Historical Year

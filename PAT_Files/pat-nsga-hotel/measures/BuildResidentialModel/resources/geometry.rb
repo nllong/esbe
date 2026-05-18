@@ -1526,11 +1526,11 @@ class WholeBuildingGeometry
           runner.registerInfo("Removed existing people from space '#{space.name}'.")
         end
         objects_to_remove.uniq.each do |object|
-          
+
             object.remove
           rescue StandardError
             # no op
-          
+
         end
 
         space_num_occ = unit_occ * UnitConversions.convert(space.floorArea, 'm^2', 'ft^2') / ffa

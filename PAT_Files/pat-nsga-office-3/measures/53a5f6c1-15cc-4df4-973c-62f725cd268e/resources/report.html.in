@@ -1944,7 +1944,7 @@ var getColor = function (x, min, max, palette) {
   if (x == null){
     return new THREE.Color(255, 255, 255);
   }
-  
+
   x = Math.min(Math.max(x, min), max);
   var percent = (x-min)/(max-min);
   var r = 1 - percent;
@@ -2022,13 +2022,13 @@ function updateColorBarSelection(value) {
 function updateBalloon(object) {
   var span = document.getElementById('balloon-variable-name');
   if (span) span.innerHTML = object.userData.variableName;
-  
+
   span = document.getElementById('balloon-variable-key-name');
   if (span) span.innerHTML = object.userData.variableKeyName;
-  
+
   span = document.getElementById('balloon-variable-date');
   if (span) span.innerHTML = object.userData.variableDate;
-  
+
   span = document.getElementById('balloon-variable-time');
   if (span) span.innerHTML = object.userData.variableTime;
 
@@ -2206,7 +2206,7 @@ function setCameraAngles(camera, controls, theta, phi, tweenTime) {
 }
 
 function init(os_data_in) {
-  
+
   // set global variable
   os_data = os_data_in;
 
@@ -2274,7 +2274,7 @@ function init(os_data_in) {
     alpha: 1,
     antialias: true,
     clearColor: 0xffffff
-  }); 
+  });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.soft = true;
@@ -2330,7 +2330,7 @@ function init(os_data_in) {
   var zAxisGeometry = new THREE.Geometry();
   zAxisGeometry.vertices.push( new THREE.Vector3(0,0,0), new THREE.Vector3(0,axisSize,0));
   scene.add( new THREE.Line( zAxisGeometry, zAxisMaterial ) );
-  
+
   if (os_data.metadata.northAxis != 0) {
     northAxisRad = -os_data.metadata.northAxis * Math.PI / 180.0;
     var northAxisMaterial = new THREE.LineBasicMaterial({ color: 0xff9933, linewidth: 2 });
@@ -2402,7 +2402,7 @@ function init(os_data_in) {
     shininess: 50,
     side: THREE.DoubleSide
   });
-  
+
   unknown_material = new THREE.MeshPhongMaterial({
     name: 'Unknown',
     color: 0xffffff,
@@ -2413,7 +2413,7 @@ function init(os_data_in) {
   });
 
   dot_material = new THREE.PointsMaterial( { size: 10, sizeAttenuation: false, color: 0xff0000 } );
-  
+
   materials = parseMaterials(os_data.materials);
 
   renderer.domElement.addEventListener('mousedown', onDocumentMouseDown, false);
@@ -2857,7 +2857,7 @@ var update = function (value) {
     t = os_data.times[variable.timeIndex][i];
     var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
     d.setUTCSeconds(t);
-    
+
     date = ('0' + (d.getUTCMonth()+1)).slice(-2) + '/' + ('0'+d.getUTCDate()).slice(-2);
     time = ('0' + d.getUTCHours()).slice(-2) + ':' + ('0'+d.getUTCMinutes()).slice(-2);
 
@@ -3182,7 +3182,7 @@ var initDatGui = function () {
     removeSelection();
     setLocalStorage('showPartitions', value);
     update(value);
-  });  
+  });
   f1.add(settings, 'showWireframe').name('Show Wireframe').onChange(function(value) {
     removeSelection();
     setLocalStorage('showWireframe', value);

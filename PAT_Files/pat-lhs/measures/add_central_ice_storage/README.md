@@ -258,7 +258,3 @@ Unselection may result in unmet cooling hours
 **Units:** ,
 **Required:** false,
 **Model Dependent:** false
-
-
-
-

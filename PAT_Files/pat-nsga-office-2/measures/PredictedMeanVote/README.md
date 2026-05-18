@@ -66,7 +66,3 @@ The frequency at which to report timeseries output data.
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
-
-
-
-

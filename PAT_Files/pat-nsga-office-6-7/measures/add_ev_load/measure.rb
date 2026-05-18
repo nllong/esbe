@@ -165,7 +165,7 @@ class AddEVLoad < OpenStudio::Measure::ModelMeasure
       runner.registerInfo("charge station type = #{chg_station_type}")
       runner.registerInfo("charge station key = #{chg_station_key}")
       # Assumed occupancy density is the typical occupancy density for charging station type determined by using a weighted
-      # average of building type and associated occupancy density 
+      # average of building type and associated occupancy density
       assumed_occupancy_density = 0.003
       runner.registerInfo("assumed occupancy = #{assumed_occupancy_density}")
     elsif chg_station_type == 'Typical Work'

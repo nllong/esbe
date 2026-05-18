@@ -12,9 +12,9 @@
 # publicly shared
 class_files
 
-# The ESBE folder is 
+# The ESBE folder is
 # dynamically generated from ipynb
-esbe
+esbe*
 
 /*/run/*/*
 !/*/run/*/*.csv

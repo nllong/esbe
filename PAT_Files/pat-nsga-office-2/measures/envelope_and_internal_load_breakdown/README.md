@@ -30,9 +30,9 @@ This measure does not have any user arguments
 ###### (Manually generated documentation)
 ## Report Screenshots
 
-* Colors of envelope components match default model rendering by surface type. 
-* Colors for equipment and lights use colors similar to OpenStudio Results. 
-* Click the blue headings above plots to expand source table. 
+* Colors of envelope components match default model rendering by surface type.
+* Colors for equipment and lights use colors similar to OpenStudio Results.
+* Click the blue headings above plots to expand source table.
 
 #### Heat Gains Summary
 *Annual pie chart and monthly stacked bar chart by component.*

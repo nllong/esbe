@@ -53,7 +53,3 @@ Number of decimal places to which temperature will be rounded
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
-
-
-
-

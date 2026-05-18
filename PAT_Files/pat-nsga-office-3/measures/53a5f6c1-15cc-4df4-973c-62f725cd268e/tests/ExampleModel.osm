@@ -3243,4 +3243,3 @@ OS:WeatherFile,
   1829,                                   !- Elevation {m}
   file:./USA_CO_Golden-NREL.724666_TMY3.epw, !- Url
   3CF64E88;                               !- Checksum
-
