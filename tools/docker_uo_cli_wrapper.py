@@ -52,6 +52,12 @@ class DockerUOCliWrapper(UOCliWrapper):
             # Fallback: use the mount target root
             return self._mount_target
 
+    def _translate_host_paths_in_command(self, command: str) -> str:
+        """Rewrite mounted host paths in a command string to container paths."""
+        host_mount = str(self._mount_source.resolve())
+        container_mount = str(self._mount_target)
+        return command.replace(host_mount, container_mount)
+
     # ------------------------------------------------------------------
     # Override the command runner
     # ------------------------------------------------------------------
@@ -78,6 +84,7 @@ class DockerUOCliWrapper(UOCliWrapper):
         container_workdir = self._host_to_container_path(
             Path(self.working_dir).resolve()
         )
+        translated_command = self._translate_host_paths_in_command(command)
 
         docker_cmd = [
             "docker",
@@ -91,7 +98,7 @@ class DockerUOCliWrapper(UOCliWrapper):
             self.image_tag,
             "bash",
             "-c",
-            command,
+            translated_command,
         ]
 
         with open(self.log_file, "a") as log:

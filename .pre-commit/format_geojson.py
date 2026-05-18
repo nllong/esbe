@@ -35,15 +35,29 @@ def format_geojson(filepath):
         if "features" in geojson_data:
             for feature in geojson_data["features"]:
                 if "properties" in feature:
-                    feature["properties"] = dict(sorted(feature["properties"].items(), key=lambda item: sort_keys_custom(item[0])))
+                    feature["properties"] = dict(
+                        sorted(
+                            feature["properties"].items(),
+                            key=lambda item: sort_keys_custom(item[0]),
+                        )
+                    )
 
                     # Move some items to be first -- name, ID, type
                     if "type" in feature["properties"]:
-                        feature["properties"] = {"type": feature["properties"]["type"], **feature["properties"]}
+                        feature["properties"] = {
+                            "type": feature["properties"]["type"],
+                            **feature["properties"],
+                        }
                     if "name" in feature["properties"]:
-                        feature["properties"] = {"name": feature["properties"]["name"], **feature["properties"]}
+                        feature["properties"] = {
+                            "name": feature["properties"]["name"],
+                            **feature["properties"],
+                        }
                     if "id" in feature["properties"]:
-                        feature["properties"] = {"id": feature["properties"]["id"], **feature["properties"]}
+                        feature["properties"] = {
+                            "id": feature["properties"]["id"],
+                            **feature["properties"],
+                        }
 
         sorted_geojson_data = json.dumps(geojson_data, indent=2)  # , sort_keys=True)
 
