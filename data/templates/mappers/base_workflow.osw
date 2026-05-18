@@ -83,6 +83,14 @@
         "curtailment_frac": 0.5
       }
     },{
+      "measure_dir_name": "AddOverhangsByProjectionFactor",
+      "arguments": {
+        "__SKIP__": true,
+        "projection_factor": "0.5",
+        "facade": "South",
+        "remove_ext_space_shading": false
+      }
+    },{
       "measure_dir_name": "urban_geometry_creation_zoning",
       "arguments": {
         "__SKIP__": true,
@@ -143,6 +151,20 @@
         "airVelocitySchedule":"Air Velocity Schedule"
       }
     },{
+      "measure_dir_name": "EnableDemandControlledVentilation",
+      "arguments": {
+        "__SKIP__": true,
+        "dcv_type": "EnableDCV"
+      }
+    },{
+      "measure_dir_name": "EnableEconomizerControl",
+      "arguments": {
+        "__SKIP__": true,
+        "economizer_type": "FixedDryBulb",
+        "econoMaxDryBulbTemp": 69.0,
+        "econoMinDryBulbTemp": -148.0
+      }
+    },{
       "measure_dir_name": "reduce_epd_by_percentage_for_peak_hours",
       "arguments": {
         "__SKIP__": true,
@@ -177,6 +199,46 @@
         "r_value": 10
       }
     },{
+      "measure_dir_name": "IncreaseInsulationRValueForRoofs",
+      "arguments": {
+        "__SKIP__": true,
+        "r_value": 30.0,
+        "allow_reduction": false,
+        "material_cost_increase_ip": 0.0,
+        "one_time_retrofit_cost_ip": 0.0,
+        "years_until_retrofit_cost": 0
+      }
+    },{
+      "measure_dir_name": "ImproveMotorEfficiency",
+      "arguments": {
+        "__SKIP__": true,
+        "object": "*All Plant and Air Loops*",
+        "motor_eff": 96.0,
+        "remove_costs": false,
+        "material_cost": 0.0,
+        "demolition_cost": 0.0,
+        "years_until_costs_start": 0,
+        "demo_cost_initial_const": false,
+        "expected_life": 20,
+        "om_cost": 0.0,
+        "om_frequency": 1
+      }
+    },{
+      "measure_dir_name": "ImproveFanBeltEfficiency",
+      "arguments": {
+        "__SKIP__": true,
+        "object": "*All Air Loops*",
+        "motor_eff": 3.0,
+        "remove_costs": false,
+        "material_cost": 0.0,
+        "demolition_cost": 0.0,
+        "years_until_costs_start": 0,
+        "demo_cost_initial_const": false,
+        "expected_life": 20,
+        "om_cost": 0.0,
+        "om_frequency": 1
+      }
+    },{
       "measure_dir_name": "ReduceElectricEquipmentLoadsByPercentage",
       "arguments": {
         "__SKIP__": true,
@@ -187,6 +249,28 @@
       "arguments": {
         "__SKIP__": true,
         "lighting_power_reduction_percent": 30
+      }
+    },{
+      "measure_dir_name": "ReduceSpaceInfiltrationByPercentage",
+      "arguments": {
+        "__SKIP__": true,
+        "space_type": "*Entire Building*",
+        "space_infiltration_reduction_percent": 30.0,
+        "constant_coefficient": 1.0,
+        "temperature_coefficient": 0.0,
+        "wind_speed_coefficient": 0.0,
+        "wind_speed_squared_coefficient": 0.0,
+        "alter_coef": true,
+        "material_and_installation_cost": 0.0,
+        "om_cost": 0.0,
+        "om_frequency": 1
+      }
+    },{
+      "measure_dir_name": "ShiftScheduleByType",
+      "arguments": {
+        "__SKIP__": true,
+        "shift_value": -1,
+        "schedchoice": "CoolHeat"
       }
     },{
       "measure_dir_name": "add_central_ice_storage",
