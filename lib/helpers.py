@@ -123,7 +123,9 @@ class NotebookPaths:
 
     Attributes:
         workdir: Notebook working directory (``Path().resolve()``).
-        analysis_dir: Per-project analysis root (``workdir / "esbe_2026"``).
+        analysis_dir: Per-project analysis root (default ``workdir / "esbe_2026"``).
+            This may also point outside ``workdir`` when ``analysis_subdir`` uses
+            a relative parent path like ``"../esbe_2026"``.
         template_data_dir: Template data root (``workdir / "data" / "templates"``).
         num_usable_cores: Suggested parallelism for URBANopt CLI runs.
     """
@@ -152,8 +154,10 @@ def setup_notebook_paths(
     Args:
         workdir: Override for the working directory. Defaults to ``Path().resolve()``
             (the directory the notebook is running from).
-        analysis_subdir: Subdirectory of ``workdir`` to use as the analysis root.
-            Created if it does not already exist.
+        analysis_subdir: Analysis directory path relative to ``workdir`` by default,
+            or absolute if an absolute path is provided. This can point outside
+            ``workdir`` (for example ``"../esbe_2026"``). Created if it does
+            not already exist.
         template_subdir: Subdirectory of ``workdir`` that holds template data.
         cores_offset: Number to subtract from ``os.cpu_count()`` to leave
             headroom for the rest of the system. Pass ``2`` on machines where
@@ -165,7 +169,7 @@ def setup_notebook_paths(
         ``template_data_dir``, and ``num_usable_cores``.
     """
     workdir = Path(workdir).resolve() if workdir is not None else Path().resolve()
-    analysis_dir = workdir / analysis_subdir
+    analysis_dir = (workdir / analysis_subdir).resolve()
     analysis_dir.mkdir(parents=True, exist_ok=True)
     template_data_dir = workdir / template_subdir
     num_usable_cores = max(1, (os.cpu_count() or 1) - cores_offset)
