@@ -95,3 +95,20 @@ poetry install
 
 jupyter lab
 # or run in VSCode (which is recommended)
+
+### Notebook Output Location
+
+Most notebooks call `setup_notebook_paths(...)` near the top. By default in this repo,
+the setup cell uses:
+
+```python
+MODEL_OUTPUT_SUBDIR = "../esbe_2026"
+paths = setup_notebook_paths(analysis_subdir=MODEL_OUTPUT_SUBDIR)
+```
+
+This stores generated model/results folders one directory level above `esbe/`.
+You can still change it per notebook, for example:
+
+- `"esbe_2026"` to keep outputs inside `esbe/`
+- `"../my_models"` for a sibling folder
+- `"/absolute/path/to/models"` for a fixed location

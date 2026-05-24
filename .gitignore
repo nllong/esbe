@@ -11,6 +11,7 @@
 # because they shoudn't be
 # publicly shared
 class_files
+outputs
 
 # The ESBE folder is
 # dynamically generated from ipynb
