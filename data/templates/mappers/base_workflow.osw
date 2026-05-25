@@ -266,6 +266,13 @@
         "om_frequency": 1
       }
     },{
+      "measure_dir_name": "ReduceVentilationByPercentage",
+      "arguments": {
+        "__SKIP__": true,
+        "space_type": "*Entire Building*",
+        "design_spec_outdoor_air_reduction_percent": 30.0
+      }
+    },{
       "measure_dir_name": "ShiftScheduleByType",
       "arguments": {
         "__SKIP__": true,
