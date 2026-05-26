@@ -80,6 +80,24 @@ class DockerUOCliWrapper(UOCliWrapper):
                 redacted.append(item)
         return redacted
 
+    @staticmethod
+    def _oom_hint_for_result(returncode: int, stdout: str, stderr: str) -> str | None:
+        """Return an actionable hint when Docker likely died due to resource pressure."""
+        combined = f"{stdout}\n{stderr}".lower()
+        has_no_output = not stdout.strip() and not stderr.strip()
+        if returncode == 137 and has_no_output:
+            return (
+                "<empty - Docker killed the container before OMC wrote anything.\n"
+                "Common causes: OOM kill (exit 137), insufficient Docker memory, or daemon crash.\n"
+                "Try: Docker Desktop -> Settings -> Resources -> increase Memory to >=8 GB."
+            )
+        if returncode == 137 or "killed" in combined or "out of memory" in combined:
+            return (
+                "Docker/container was killed (likely OOM).\n"
+                "Try: increase Docker memory, reduce model size, or shorten simulation duration."
+            )
+        return None
+
     def _run_command(self, command: str) -> None:  # type: ignore[override]
         container_workdir = self._host_to_container_path(
             Path(self.working_dir).resolve()
@@ -113,3 +131,19 @@ class DockerUOCliWrapper(UOCliWrapper):
             print(stdout)
             if stderr:
                 print(stderr)
+
+            if result.returncode != 0:
+                oom_hint = self._oom_hint_for_result(result.returncode, stdout, stderr)
+                diagnostic_lines = [
+                    f"Docker command failed with exit code {result.returncode}.",
+                ]
+                if oom_hint is not None:
+                    diagnostic_lines.extend(["", oom_hint])
+                diagnostic_lines.extend(
+                    [
+                        "",
+                        f"See log file for details: {self.log_file}",
+                        f"Command: {' '.join(self._redact_docker_cmd(docker_cmd))}",
+                    ]
+                )
+                raise RuntimeError("\n".join(diagnostic_lines))
