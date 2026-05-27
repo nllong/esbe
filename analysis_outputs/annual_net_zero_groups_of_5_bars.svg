@@ -1,0 +1,70 @@
+<svg viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg">
+<style>text{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif}.title{font-size:24px;font-weight:700}.axis{font-size:12px;fill:#4b5563}.label{font-size:12px;fill:#111827}.val{font-size:12px;font-weight:700}.grid{stroke:#e5e7eb}.best{fill:#059669}.worst{fill:#ef4444}</style><rect width="100%" height="100%" fill="#fff"/>
+<text x="330" y="38" class="title">Annual Net Offset: Closest and Farthest 5-Building Groups</text>
+<line x1="330.0" y1="62" x2="330.0" y2="688" class="grid"/><text x="330.0" y="710" text-anchor="middle" class="axis">0.00</text>
+<line x1="387.2" y1="62" x2="387.2" y2="688" class="grid"/><text x="387.2" y="710" text-anchor="middle" class="axis">0.05</text>
+<line x1="444.5" y1="62" x2="444.5" y2="688" class="grid"/><text x="444.5" y="710" text-anchor="middle" class="axis">0.10</text>
+<line x1="558.9" y1="62" x2="558.9" y2="688" class="grid"/><text x="558.9" y="710" text-anchor="middle" class="axis">0.20</text>
+<line x1="787.9" y1="62" x2="787.9" y2="688" class="grid"/><text x="787.9" y="710" text-anchor="middle" class="axis">0.40</text>
+<line x1="1016.8" y1="62" x2="1016.8" y2="688" class="grid"/><text x="1016.8" y="710" text-anchor="middle" class="axis">0.60</text>
+<text x="318" y="87.5" text-anchor="end" class="label">2:hotel 1 + 9:office 7 + 14:res 5 + 15:res 6 + 23:school 1</text>
+<rect x="330" y="74.0" width="0.0" height="20.7" rx="3" class="best"/>
+<text x="338.0" y="87.5" class="val">0.000, net 16 MWh</text>
+<text x="318" y="118.0" text-anchor="end" class="label">2:hotel 1 + 8:office 6 + 11:res 2 + 12:res 3 + 23:school 1</text>
+<rect x="330" y="104.5" width="0.0" height="20.7" rx="3" class="best"/>
+<text x="338.0" y="118.0" class="val">0.000, net 29 MWh</text>
+<text x="318" y="148.5" text-anchor="end" class="label">2:hotel 1 + 6:office 4 + 9:office 7 + 20:restaurant 2 + 23:school 1</text>
+<rect x="330" y="135.0" width="0.0" height="20.7" rx="3" class="best"/>
+<text x="338.0" y="148.5" class="val">0.000, net -49 MWh</text>
+<text x="318" y="179.0" text-anchor="end" class="label">2:hotel 1 + 9:office 7 + 14:res 5 + 17:res 8 + 23:school 1</text>
+<rect x="330" y="165.5" width="0.0" height="20.7" rx="3" class="best"/>
+<text x="338.0" y="179.0" class="val">0.000, net -60 MWh</text>
+<text x="318" y="209.5" text-anchor="end" class="label">2:hotel 1 + 8:office 6 + 10:res 1 + 11:res 2 + 23:school 1</text>
+<rect x="330" y="196.0" width="0.0" height="20.7" rx="3" class="best"/>
+<text x="338.0" y="209.5" class="val">0.000, net 72 MWh</text>
+<text x="318" y="240.0" text-anchor="end" class="label">2:hotel 1 + 9:office 7 + 13:res 4 + 14:res 5 + 23:school 1</text>
+<rect x="330" y="226.5" width="0.0" height="20.7" rx="3" class="best"/>
+<text x="338.0" y="240.0" class="val">0.000, net -93 MWh</text>
+<text x="318" y="270.5" text-anchor="end" class="label">2:hotel 1 + 8:office 6 + 14:res 5 + 16:res 7 + 23:school 1</text>
+<rect x="330" y="257.0" width="0.1" height="20.7" rx="3" class="best"/>
+<text x="338.1" y="270.5" class="val">0.000, net -120 MWh</text>
+<text x="318" y="301.0" text-anchor="end" class="label">2:hotel 1 + 8:office 6 + 11:res 2 + 15:res 6 + 23:school 1</text>
+<rect x="330" y="287.5" width="0.1" height="20.7" rx="3" class="best"/>
+<text x="338.1" y="301.0" class="val">0.000, net -135 MWh</text>
+<text x="318" y="331.5" text-anchor="end" class="label">2:hotel 1 + 8:office 6 + 14:res 5 + 18:res 9 + 23:school 1</text>
+<rect x="330" y="318.0" width="0.1" height="20.7" rx="3" class="best"/>
+<text x="338.1" y="331.5" class="val">0.000, net 150 MWh</text>
+<text x="318" y="362.0" text-anchor="end" class="label">1:mall 1 + 4:office 2 + 11:res 2 + 20:restaurant 2 + 23:school 1</text>
+<rect x="330" y="348.5" width="0.1" height="20.7" rx="3" class="best"/>
+<text x="338.1" y="362.0" class="val">0.000, net -142 MWh</text>
+<text x="318" y="392.5" text-anchor="end" class="label">16:res 7 + 19:restaurant 1 + 20:restaurant 2 + 21:restaurant 3 + 22:restaurant 4</text>
+<rect x="330" y="379.0" width="761.9" height="20.7" rx="3" class="worst"/>
+<text x="1099.9" y="392.5" class="val">0.666, net -589,606 MWh</text>
+<text x="318" y="423.0" text-anchor="end" class="label">17:res 8 + 19:restaurant 1 + 20:restaurant 2 + 21:restaurant 3 + 22:restaurant 4</text>
+<rect x="330" y="409.5" width="761.9" height="20.7" rx="3" class="worst"/>
+<text x="1099.9" y="423.0" class="val">0.666, net -589,158 MWh</text>
+<text x="318" y="453.5" text-anchor="end" class="label">18:res 9 + 19:restaurant 1 + 20:restaurant 2 + 21:restaurant 3 + 22:restaurant 4</text>
+<rect x="330" y="440.0" width="761.7" height="20.7" rx="3" class="worst"/>
+<text x="1099.7" y="453.5" class="val">0.665, net -589,336 MWh</text>
+<text x="318" y="484.0" text-anchor="end" class="label">13:res 4 + 19:restaurant 1 + 20:restaurant 2 + 21:restaurant 3 + 22:restaurant 4</text>
+<rect x="330" y="470.5" width="760.7" height="20.7" rx="3" class="worst"/>
+<text x="1098.7" y="484.0" class="val">0.665, net -589,190 MWh</text>
+<text x="318" y="514.5" text-anchor="end" class="label">15:res 6 + 19:restaurant 1 + 20:restaurant 2 + 21:restaurant 3 + 22:restaurant 4</text>
+<rect x="330" y="501.0" width="760.6" height="20.7" rx="3" class="worst"/>
+<text x="1098.6" y="514.5" class="val">0.664, net -589,082 MWh</text>
+<text x="318" y="545.0" text-anchor="end" class="label">10:res 1 + 19:restaurant 1 + 20:restaurant 2 + 21:restaurant 3 + 22:restaurant 4</text>
+<rect x="330" y="531.5" width="759.9" height="20.7" rx="3" class="worst"/>
+<text x="1097.9" y="545.0" class="val">0.664, net -588,875 MWh</text>
+<text x="318" y="575.5" text-anchor="end" class="label">12:res 3 + 19:restaurant 1 + 20:restaurant 2 + 21:restaurant 3 + 22:restaurant 4</text>
+<rect x="330" y="562.0" width="759.8" height="20.7" rx="3" class="worst"/>
+<text x="1097.8" y="575.5" class="val">0.664, net -588,918 MWh</text>
+<text x="318" y="606.0" text-anchor="end" class="label">11:res 2 + 19:restaurant 1 + 20:restaurant 2 + 21:restaurant 3 + 22:restaurant 4</text>
+<rect x="330" y="592.5" width="758.5" height="20.7" rx="3" class="worst"/>
+<text x="1096.5" y="606.0" class="val">0.663, net -587,969 MWh</text>
+<text x="318" y="636.5" text-anchor="end" class="label">14:res 5 + 19:restaurant 1 + 20:restaurant 2 + 21:restaurant 3 + 22:restaurant 4</text>
+<rect x="330" y="623.0" width="757.0" height="20.7" rx="3" class="worst"/>
+<text x="1095.0" y="636.5" class="val">0.661, net -587,429 MWh</text>
+<text x="318" y="667.0" text-anchor="end" class="label">1:mall 1 + 19:restaurant 1 + 20:restaurant 2 + 21:restaurant 3 + 22:restaurant 4</text>
+<rect x="330" y="653.5" width="727.9" height="20.7" rx="3" class="worst"/>
+<text x="1065.9" y="667.0" class="val">0.636, net -968,002 MWh</text>
+<text x="330" y="740" class="axis">Score = abs(sum(H)-sum(C)) / sum(H+C). Lower is closest to annual zero.</text></svg>
