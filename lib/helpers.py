@@ -25,6 +25,7 @@ package rather than here. See:
 from __future__ import annotations
 
 import os
+import re
 import shutil
 import warnings
 from dataclasses import dataclass
@@ -247,6 +248,136 @@ def copy_activity_to_new_location(source_dir, dest_dir, overwrite=False):
     return dest_dir
 
 
+def create_subset_geojson(
+    source_geojson: Path,
+    building_names: list[str],
+    dest_geojson: Path,
+) -> Path:
+    """Create a GeoJSON containing only the specified buildings, in the given order.
+
+    Non-building features (roads, site origin) are preserved unchanged.
+    The order of ``building_names`` controls the loop order in the 5G model —
+    the first building in the list is first in the district loop.
+
+    Args:
+        source_geojson: Path to the full-project GeoJSON file.
+        building_names: Building names (``Feature Name`` values) to include,
+            in the desired loop order.
+        dest_geojson: Destination path to write the filtered GeoJSON.
+
+    Returns:
+        The destination path.
+
+    Raises:
+        ValueError: If any name in ``building_names`` is not found in the source.
+    """
+    import json as _json
+
+    data = _json.loads(Path(source_geojson).read_text())
+
+    non_building = [
+        f for f in data["features"] if f.get("properties", {}).get("type") != "Building"
+    ]
+    buildings_by_name = {
+        f["properties"]["name"]: f
+        for f in data["features"]
+        if f.get("properties", {}).get("type") == "Building"
+    }
+
+    missing = [name for name in building_names if name not in buildings_by_name]
+    if missing:
+        raise ValueError(f"Buildings not found in source GeoJSON: {missing}")
+
+    ordered = [buildings_by_name[name] for name in building_names]
+
+    dest_geojson = Path(dest_geojson)
+    dest_geojson.parent.mkdir(parents=True, exist_ok=True)
+    dest_geojson.write_text(
+        _json.dumps({**data, "features": non_building + ordered}, indent=2)
+    )
+    print(f"Created subset GeoJSON ({len(building_names)} buildings) -> {dest_geojson}")
+    return dest_geojson
+
+
+def create_subset_scenario_csv(
+    source_csv: Path,
+    building_names: list[str],
+    dest_csv: Path,
+) -> Path:
+    """Create a scenario CSV containing only rows for the specified buildings.
+
+    The row order in the output matches ``building_names``.
+
+    Args:
+        source_csv: Path to the full-project scenario CSV.
+        building_names: Building names (``Feature Name`` column) to include,
+            in the desired order.
+        dest_csv: Destination path to write the filtered CSV.
+
+    Returns:
+        The destination path.
+
+    Raises:
+        ValueError: If any name in ``building_names`` is not found in the source CSV.
+    """
+    df = pd.read_csv(source_csv)
+    name_to_row = {row["Feature Name"]: row for _, row in df.iterrows()}
+
+    missing = [name for name in building_names if name not in name_to_row]
+    if missing:
+        raise ValueError(f"Buildings not found in source CSV: {missing}")
+
+    subset_df = pd.DataFrame([name_to_row[name] for name in building_names])
+
+    dest_csv = Path(dest_csv)
+    dest_csv.parent.mkdir(parents=True, exist_ok=True)
+    subset_df.to_csv(dest_csv, index=False)
+    print(
+        f"Created subset scenario CSV ({len(building_names)} buildings) -> {dest_csv}"
+    )
+    return dest_csv
+
+
+def summarize_openmodelica_timing(
+    success: bool,
+    wall_time_s: float,
+    results_path: Path,
+) -> tuple[Optional[float], Optional[float]]:
+    """Parse and print OpenModelica compile/simulation timing details.
+
+    Reads ``stdout.log`` in ``results_path`` when available and extracts
+    ``timeCompile`` and ``timeSimulation`` values.
+
+    Args:
+        success: Run status to print with the timing summary.
+        wall_time_s: Elapsed wall time in seconds.
+        results_path: Directory that may contain ``stdout.log``.
+
+    Returns:
+        ``(time_compile_s, time_simulation_s)`` where each value is ``None``
+        when not present.
+    """
+    omp_compile_s = None
+    omp_sim_s = None
+    stdout_path = Path(results_path) / "stdout.log"
+    if stdout_path.exists():
+        txt = stdout_path.read_text(errors="ignore")
+        m_compile = re.search(r"timeCompile\s*=\s*([0-9.]+)", txt)
+        m_sim = re.search(r"timeSimulation\s*=\s*([0-9.]+)", txt)
+        if m_compile:
+            omp_compile_s = float(m_compile.group(1))
+        if m_sim:
+            omp_sim_s = float(m_sim.group(1))
+
+    print(f"  success={success}")
+    print(f"  wall_time_s={wall_time_s:.1f}")
+    print(f"  om_timeCompile_s={omp_compile_s}")
+    print(f"  om_timeSimulation_s={omp_sim_s}")
+    print(f"  results={results_path}")
+
+    return omp_compile_s, omp_sim_s
+
+
 def silence_common_warnings() -> None:
     """Apply the warning filters every post-process notebook used to set inline.
 
@@ -348,9 +479,314 @@ def _grid_metric_ylabel(var: str) -> tuple:
     return f"{var} (W)", "electricity", None, None
 
 
+_CASCADE_TEMP_RE = re.compile(r"^Building (\d+) (supply|return)$")
+_CASCADE_USE_RE = re.compile(r"^Building (\d+) use: supply - return$")
+_CASCADE_PENALTY_RE = re.compile(r"^Downstream penalty: B(\d+) supply - B(\d+) supply$")
+
+
+def _cascade_building_temperature_columns(df: pd.DataFrame) -> list[str]:
+    """Return ``Building N supply/return`` columns in loop order."""
+
+    def key(col: str) -> tuple[int, int]:
+        match = _CASCADE_TEMP_RE.match(col)
+        if not match:
+            return 999, 999
+        building = int(match.group(1))
+        kind = 0 if match.group(2) == "supply" else 1
+        return building, kind
+
+    return sorted([c for c in df.columns if _CASCADE_TEMP_RE.match(c)], key=key)
+
+
+def _cascade_building_ids(temp_cols: Sequence[str]) -> list[int]:
+    """Return sorted building ids from ``Building N supply/return`` columns."""
+    return sorted(
+        {
+            int(match.group(1))
+            for col in temp_cols
+            if (match := _CASCADE_TEMP_RE.match(col))
+        }
+    )
+
+
+def _cascade_ensure_metrics(df: pd.DataFrame, ids: Sequence[int]) -> list[str]:
+    """Add/use per-building and adjacent downstream metrics, ordered for plotting."""
+    metric_cols: list[str] = []
+
+    for building in ids:
+        supply = f"Building {building} supply"
+        ret = f"Building {building} return"
+        metric = f"Building {building} use: supply - return"
+        if supply in df and ret in df:
+            if metric not in df:
+                df[metric] = df[supply] - df[ret]
+            metric_cols.append(metric)
+
+    for upstream, downstream in zip(ids[:-1], ids[1:]):
+        upstream_supply = f"Building {upstream} supply"
+        downstream_supply = f"Building {downstream} supply"
+        metric = f"Downstream penalty: B{upstream} supply - B{downstream} supply"
+        if upstream_supply in df and downstream_supply in df:
+            if metric not in df:
+                df[metric] = df[upstream_supply] - df[downstream_supply]
+            metric_cols.append(metric)
+
+    return metric_cols
+
+
+def _cascade_short_label(label: str) -> str:
+    """Compact cascade labels for legends and x-axis ticks."""
+    if match := _CASCADE_TEMP_RE.match(label):
+        return f"B{match.group(1)} {match.group(2)}"
+    if match := _CASCADE_USE_RE.match(label):
+        return f"B{match.group(1)} use"
+    if match := _CASCADE_PENALTY_RE.match(label):
+        return f"B{match.group(1)} to B{match.group(2)} penalty"
+    return label
+
+
+def _cascade_node_palette(ids: Sequence[int]) -> dict[str, str]:
+    """Color supply/return node traces for up to five buildings."""
+    supply_colors = ["#2a9d8f", "#0077b6", "#6a994e", "#577590", "#8f5db7"]
+    return_colors = ["#d1495b", "#b23a48", "#e76f51", "#99582a", "#bc4749"]
+    palette: dict[str, str] = {}
+
+    for index, building in enumerate(ids):
+        palette[f"B{building} supply"] = supply_colors[index % len(supply_colors)]
+        palette[f"B{building} return"] = return_colors[index % len(return_colors)]
+
+    return palette
+
+
+def _cascade_metric_palette(metric_labels: Sequence[str]) -> dict[str, str]:
+    """Color per-building use and downstream penalty traces."""
+    use_colors = ["#d1495b", "#b23a48", "#e76f51", "#99582a", "#bc4749"]
+    penalty_colors = ["#6f4e7c", "#577590", "#7a6c5d", "#466365", "#8f5db7"]
+    palette: dict[str, str] = {}
+    use_i = 0
+    penalty_i = 0
+
+    for label in metric_labels:
+        short = _cascade_short_label(label)
+        if _CASCADE_PENALTY_RE.match(label):
+            palette[short] = penalty_colors[penalty_i % len(penalty_colors)]
+            penalty_i += 1
+        else:
+            palette[short] = use_colors[use_i % len(use_colors)]
+            use_i += 1
+
+    return palette
+
+
+def _cascade_stress_target_column(stress_col: str, temp_cols: Sequence[str]) -> str:
+    """Return the temperature column to annotate for the selected stress metric."""
+    if match := _CASCADE_PENALTY_RE.match(stress_col):
+        downstream = match.group(2)
+        col = f"Building {downstream} supply"
+        if col in temp_cols:
+            return col
+    return temp_cols[-1]
+
+
 # ---------------------------------------------------------------------------
 # Plotting helpers (public)
 # ---------------------------------------------------------------------------
+
+
+def plot_cascade_temperature_challenge(
+    input_csv: Path,
+    output_path: Optional[Path] = None,
+    show: bool = True,
+    dpi: int = 220,
+) -> Path:
+    """Plot the cascading district-loop temperature challenge.
+
+    The input CSV should contain ``time_s``, ``hours_from_start``, and columns
+    named ``Building N supply`` / ``Building N return``. It may already contain
+    cascade metric columns, but they are created automatically when missing:
+
+    * ``Building N use: supply - return``
+    * ``Downstream penalty: BN supply - B{N+1} supply``
+
+    The plot is data-driven and supports two to five buildings, while also
+    tolerating fewer/more if the same column naming convention is used.
+
+    Args:
+        input_csv: Path to a cascade temperature metrics CSV.
+        output_path: Destination image path. Defaults to
+            ``input_csv.parent / "08_cascading_temperature_challenge_seaborn.png"``.
+        show: If True, call ``plt.show()`` before closing the figure.
+        dpi: Resolution for the saved figure.
+
+    Returns:
+        Path to the saved image.
+
+    Raises:
+        ValueError: If required columns are missing.
+    """
+    input_csv = Path(input_csv)
+    output_path = (
+        Path(output_path)
+        if output_path is not None
+        else input_csv.parent / "08_cascading_temperature_challenge_seaborn.png"
+    )
+
+    df = pd.read_csv(input_csv)
+    if "hours_from_start" not in df.columns:
+        raise ValueError("CSV must include an 'hours_from_start' column.")
+
+    temp_cols = _cascade_building_temperature_columns(df)
+    if not temp_cols:
+        raise ValueError("No 'Building N supply/return' columns found.")
+
+    ids = _cascade_building_ids(temp_cols)
+    metric_cols = _cascade_ensure_metrics(df, ids)
+    if not metric_cols:
+        raise ValueError("No cascade metric columns could be created.")
+
+    stress_col = next(
+        (c for c in metric_cols if "penalty" in c.lower()), metric_cols[0]
+    )
+    stress_idx = df[stress_col].idxmax()
+    stress_hour = df.loc[stress_idx, "hours_from_start"]
+    stress_penalty = df.loc[stress_idx, stress_col]
+    stress_target = _cascade_stress_target_column(stress_col, temp_cols)
+    snapshot_idxs = list(dict.fromkeys([df.index[0], stress_idx, df.index[-1]]))
+
+    sns.set_theme(
+        style="whitegrid",
+        context="talk",
+        rc={
+            "axes.spines.right": False,
+            "axes.spines.top": False,
+            "font.family": "Arial",
+        },
+    )
+
+    fig_height = max(11.0, 9.5 + 0.22 * len(temp_cols))
+    fig = plt.figure(figsize=(15.5, fig_height), constrained_layout=True)
+    gs = fig.add_gridspec(2, 2, height_ratios=[1.65, 1.0])
+    ax_top = fig.add_subplot(gs[0, :])
+    ax_delta = fig.add_subplot(gs[1, 0])
+    ax_profile = fig.add_subplot(gs[1, 1])
+
+    fig.suptitle("Cascading Temperature Challenge", fontsize=24, fontweight="bold")
+    fig.text(
+        0.5,
+        0.955,
+        "Initial hour omitted. Each building is ordered supply then return.",
+        ha="center",
+        fontsize=12,
+        color="#52616b",
+    )
+
+    temp_long = df.melt(
+        id_vars="hours_from_start",
+        value_vars=temp_cols,
+        var_name="node",
+        value_name="temperature_c",
+    )
+    temp_long["node"] = temp_long["node"].map(_cascade_short_label)
+    sns.lineplot(
+        data=temp_long,
+        x="hours_from_start",
+        y="temperature_c",
+        hue="node",
+        palette=_cascade_node_palette(ids),
+        linewidth=2.4,
+        ax=ax_top,
+    )
+    ax_top.set_title("1. Building node temperatures", loc="left", fontweight="bold")
+    ax_top.set_xlabel("Hours from simulation start")
+    ax_top.set_ylabel("Temperature (C)")
+    ax_top.legend(title="Node order", loc="center left", bbox_to_anchor=(1.01, 0.5))
+    ax_top.annotate(
+        (
+            f"Largest {_cascade_short_label(stress_col)}: {stress_penalty:.2f} C\n"
+            f"at hour {stress_hour:.1f}"
+        ),
+        xy=(stress_hour, df.loc[stress_idx, stress_target]),
+        xytext=(0.73, 0.18),
+        textcoords="axes fraction",
+        arrowprops={"arrowstyle": "->", "color": "#9a3412", "lw": 1.5},
+        bbox={"boxstyle": "round,pad=0.45", "fc": "#fff7ed", "ec": "#fed7aa"},
+        color="#7c2d12",
+        fontsize=11,
+    )
+
+    metric_long = df.melt(
+        id_vars="hours_from_start",
+        value_vars=metric_cols,
+        var_name="metric",
+        value_name="delta_c",
+    )
+    metric_long["metric"] = metric_long["metric"].map(_cascade_short_label)
+    sns.lineplot(
+        data=metric_long,
+        x="hours_from_start",
+        y="delta_c",
+        hue="metric",
+        palette=_cascade_metric_palette(metric_cols),
+        linewidth=2.4,
+        ax=ax_delta,
+    )
+    ax_delta.set_title(
+        "2. Temperature use and downstream penalty",
+        loc="left",
+        fontweight="bold",
+    )
+    ax_delta.set_xlabel("Hours from simulation start")
+    ax_delta.set_ylabel("Difference (C)")
+    ax_delta.legend(title=None, loc="upper left", fontsize=10)
+
+    profile_rows = []
+    for idx in snapshot_idxs:
+        label = f"hour {df.loc[idx, 'hours_from_start']:.1f}"
+        if idx == stress_idx:
+            label += " stress"
+        for order, col in enumerate(temp_cols):
+            profile_rows.append(
+                {
+                    "node": _cascade_short_label(col)
+                    .replace("supply", "sup")
+                    .replace("return", "ret"),
+                    "order": order,
+                    "temperature_c": df.loc[idx, col],
+                    "snapshot": label,
+                }
+            )
+
+    profile = pd.DataFrame(profile_rows)
+    sns.lineplot(
+        data=profile,
+        x="order",
+        y="temperature_c",
+        hue="snapshot",
+        marker="o",
+        linewidth=2.2,
+        ax=ax_profile,
+    )
+    ax_profile.set_title("3. Ordered loop snapshot", loc="left", fontweight="bold")
+    ax_profile.set_xlabel("")
+    ax_profile.set_ylabel("Temperature (C)")
+    ax_profile.set_xticks(range(len(temp_cols)))
+    ax_profile.set_xticklabels(
+        [
+            _cascade_short_label(c).replace("supply", "sup").replace("return", "ret")
+            for c in temp_cols
+        ],
+        rotation=30 if len(temp_cols) > 6 else 0,
+        ha="right" if len(temp_cols) > 6 else "center",
+    )
+    ax_profile.legend(title=None, loc="best", fontsize=10)
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_path, dpi=dpi, bbox_inches="tight")
+    if show:
+        plt.show()
+    plt.close(fig)
+    print(f"Saved {output_path}")
+    return output_path
 
 
 def plot_end_use_bar_non_connected(
