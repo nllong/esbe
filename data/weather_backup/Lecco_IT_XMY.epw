@@ -1,7 +1,7 @@
-LOCATION,Lecco,IT,-,MN7,723150,45.850,9.380,1,606
-DESIGN CONDITIONS,1,Climate Design Data 2009 ASHRAE Handbook,,Heating,1,-10.2,-7.5,-17.9,0.8,-4,-15.1,1.1,-3.1,12.5,-1.7,11.5,-2.6,5.4,340,Cooling,7,10.7,31.2,22,29.9,21.6,28.7,21.2,23.4,28.5,22.8,27.6,22.2,26.7,3.8,340,22,18.1,25.3,21.3,17.4,24.7,20.8,16.8,24.1,73,28.4,70.5,27.7,68.3,26.8,886,Extremes,10.4,8.8,7.9,29.5,-15.2,33.1,4.2,1.5,-18.3,34.1,-20.7,35,-23.1,35.8,-26.1,36.9
-TYPICAL/EXTREME PERIODS,6,Summer - Week Nearest Max Temperature For Period,Extreme,7/13,7/19,Summer - Week Nearest Average Temperature For Period,Typical,6/15,6/21,Winter - Week Nearest Min Temperature For Period,Extreme,1/ 6,1/12,Winter - Week Nearest Average Temperature For Period,Typical,12/22,1/ 5,Autumn - Week Nearest Average Temperature For Period,Typical,10/20,10/26,Spring - Week Nearest Average Temperature For Period,Typical,4/ 5,4/11
-GROUND TEMPERATURES,3,.5,,,,4.08,3.22,4.74,7.11,13.30,18.08,21.31,22.29,20.62,16.90,11.94,7.34,2,,,,7.22,5.70,6.01,7.27,11.41,15.16,18.16,19.76,19.42,17.32,13.90,10.28,4,,,,9.82,8.26,7.92,8.39,10.74,13.26,15.57,17.19,17.56,16.65,14.64,12.19
+LOCATION,Lecco,IT,-,MN7,0,45.850,9.380,1,606
+DESIGN CONDITIONS,0
+TYPICAL/EXTREME PERIODS,0
+GROUND TEMPERATURES,1,1.0,,,,8.2,6.4,5.7,6.4,8.2,10.7,13.2,15.0,15.7,15.0,13.2,10.7
 HOLIDAYS/DAYLIGHT SAVINGS,No,0,0,0
 COMMENTS 1,  METEONORM Version 7.x
 COMMENTS 2,
