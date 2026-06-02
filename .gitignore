@@ -32,3 +32,5 @@ esbe*
 /PAT_Files/*/*.json
 !/PAT_Files/*/pat.json
 /PAT_Files/*/*.zip
+
+data/templates_remote

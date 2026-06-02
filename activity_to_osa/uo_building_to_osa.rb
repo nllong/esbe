@@ -3,7 +3,7 @@
 require 'openstudio-analysis'
 
 analysis_dir = File.expand_path(File.join(Dir.pwd))
-project_dir = File.expand_path(File.join(analysis_dir, '/esbe/activity_2/coincident'))
+project_dir = File.expand_path(File.join(analysis_dir, '/esbe/activity_02/coincident'))
 sim_dir = File.join(project_dir, "run/baseline_scenario/1")
 puts "Sim dir: #{sim_dir}"
 osw_filename = 'in.osw'
