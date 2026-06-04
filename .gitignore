@@ -16,6 +16,7 @@ outputs
 # The ESBE folder is
 # dynamically generated from ipynb
 esbe*
+remote_projects
 
 /*/run/*/*
 !/*/run/*/*.csv

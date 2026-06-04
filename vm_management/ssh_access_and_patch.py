@@ -51,16 +51,43 @@ VMS = [
     VM("student25@esbe.energy", "136.115.151.172"),
     VM("student26@esbe.energy", "34.58.230.131"),
     VM("student27@esbe.energy", "34.67.145.168"),
+    VM("student28@esbe.energy", "136.119.120.171"),
 ]
 
 
 SSH_USER = "tr406"
+
+DEFAULT_TIMEOUT_SECONDS = 5 * 60
 
 
 PATCHES = {
     "copy-baseline": (
         "cp /mnt/data/uo/diverse/mappers/Baseline.rb /mnt/data/uo/coincident/mappers/"
     ),
+    "backup-and-disable-pmv": (
+        "sudo mkdir -p /mnt/data/uo/coincident/mappers/_archive /mnt/data/uo/diverse/mappers/_archive && "
+        "cp /mnt/data/uo/coincident/mappers/Baseline.rb "
+        "/mnt/data/uo/coincident/mappers/_archive/Baseline_backup_20260603.rb && "
+        "cp /mnt/data/uo/diverse/mappers/Baseline.rb "
+        "/mnt/data/uo/diverse/mappers/_archive/Baseline_backup_20260603.rb && "
+        "perl -pi -e \"s/OpenStudio::Extension\\.set_measure_argument\\(osw, 'PredictedMeanVote', '__SKIP__', false\\)/OpenStudio::Extension.set_measure_argument(osw, 'PredictedMeanVote', '__SKIP__', true)/g\" "
+        "/mnt/data/uo/coincident/mappers/Baseline.rb "
+        "/mnt/data/uo/diverse/mappers/Baseline.rb"
+    ),
+    "install-gedit": "sudo apt update && sudo NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive apt install -y gedit",
+    "set-firefox-default-browser": "xdg-settings set default-web-browser firefox.desktop",
+    "move_backup_files": (
+        "sudo mkdir -p /mnt/data/uo/coincident/mappers/_archive /mnt/data/uo/diverse/mappers/_archive && "
+        "if [ -f /mnt/data/uo/coincident/mappers/Baseline_backup_20260603.rb ]; then "
+        "sudo mv /mnt/data/uo/coincident/mappers/Baseline_backup_20260603.rb /mnt/data/uo/coincident/mappers/_archive/ && "
+        "echo 'coincident backup moved'; "
+        "else echo 'coincident backup not found, skipped'; fi && "
+        "if [ -f /mnt/data/uo/diverse/mappers/Baseline_backup_20260603.rb ]; then "
+        "sudo mv /mnt/data/uo/diverse/mappers/Baseline_backup_20260603.rb /mnt/data/uo/diverse/mappers/_archive/ && "
+        "echo 'diverse backup moved'; "
+        "else echo 'diverse backup not found, skipped'; fi"
+    ),
+    "install-zip": "sudo apt update && sudo NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive apt install -y zip",
 }
 
 
@@ -160,7 +187,12 @@ def main() -> int:
         default="~/.ssh/uo_esbe",
         help="Private key path.",
     )
-    parser.add_argument("--timeout", type=int, default=8, help="SSH connect timeout.")
+    parser.add_argument(
+        "--timeout",
+        type=int,
+        default=DEFAULT_TIMEOUT_SECONDS,
+        help="SSH timeout in seconds (default: 300 = 5 minutes).",
+    )
     parser.add_argument("--workers", type=int, default=8, help="Parallel SSH checks.")
     subparsers = parser.add_subparsers(dest="action")
 
