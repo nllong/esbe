@@ -88,6 +88,9 @@ PATCHES = {
     ),
     "install-gedit": "sudo apt update && sudo NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive apt install -y gedit",
     "set-firefox-default-browser": "xdg-settings set default-web-browser firefox.desktop",
+    "reset-and-pull-esbe-repo": (
+        "cd /mnt/data/uo/esbe && git reset --hard HEAD && git pull"
+    ),
     "move_backup_files": (
         "sudo mkdir -p /mnt/data/uo/coincident/mappers/_archive /mnt/data/uo/diverse/mappers/_archive && "
         "if [ -f /mnt/data/uo/coincident/mappers/Baseline_backup_20260603.rb ]; then "
