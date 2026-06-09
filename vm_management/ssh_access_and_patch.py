@@ -23,6 +23,18 @@ class RemoteResult:
     message: str
 
 
+@dataclass(frozen=True)
+class UploadSpec:
+    local_path: str
+    remote_path: str
+
+
+@dataclass(frozen=True)
+class PatchSpec:
+    uploads: list[UploadSpec]
+    remote_command: str
+
+
 VMS = [
     VM("student1@esbe.energy", "35.224.206.182"),
     VM("student2@esbe.energy", "35.202.198.241"),
@@ -76,6 +88,9 @@ PATCHES = {
     ),
     "install-gedit": "sudo apt update && sudo NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive apt install -y gedit",
     "set-firefox-default-browser": "xdg-settings set default-web-browser firefox.desktop",
+    "reset-and-pull-esbe-repo": (
+        "cd /mnt/data/uo/esbe && git reset --hard HEAD && git pull"
+    ),
     "move_backup_files": (
         "sudo mkdir -p /mnt/data/uo/coincident/mappers/_archive /mnt/data/uo/diverse/mappers/_archive && "
         "if [ -f /mnt/data/uo/coincident/mappers/Baseline_backup_20260603.rb ]; then "
@@ -87,7 +102,191 @@ PATCHES = {
         "echo 'diverse backup moved'; "
         "else echo 'diverse backup not found, skipped'; fi"
     ),
-    "install-zip": "sudo apt update && sudo NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive apt install -y zip",
+    "install-zip": "sudo apt update && sudo NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive apt install -y zip unzip",
+    "copy-set-window-glazing-measure": PatchSpec(
+        uploads=[
+            UploadSpec(
+                "/Users/nlong/working/openstudio/openstudio-mcp/measures/custom/set_simple_glazing.zip",
+                "/tmp/set_simple_glazing.zip",
+            )
+        ],
+        remote_command=(
+            "for d in /mnt/data/uo/pat-morris/measures /mnt/data/uo/pat-lhs/measures /mnt/data/uo/pat-nsga/measures; do "
+            'sudo mkdir -p "$d" && '
+            'sudo cp /tmp/set_simple_glazing.zip "$d/" && '
+            'sudo unzip -o "$d/set_simple_glazing.zip" -d "$d" && '
+            'sudo chown -R tr406:tr406 "$d/set_simple_glazing" "$d/set_simple_glazing.zip"; '
+            "done"
+        ),
+    ),
+    "copy-set-wwr-measure": PatchSpec(
+        uploads=[
+            UploadSpec(
+                "/Users/nlong/working/openstudio/openstudio-mcp/measures/custom/SetWindowToWallRatioByFacade.zip",
+                "/tmp/SetWindowToWallRatioByFacade.zip",
+            )
+        ],
+        remote_command=(
+            "for d in /mnt/data/uo/pat-morris/measures /mnt/data/uo/pat-lhs/measures /mnt/data/uo/pat-nsga/measures; do "
+            'sudo mkdir -p "$d" && '
+            'sudo cp /tmp/SetWindowToWallRatioByFacade.zip "$d/" && '
+            'sudo unzip -o "$d/SetWindowToWallRatioByFacade.zip" -d "$d" && '
+            'sudo chown -R tr406:tr406 "$d/SetWindowToWallRatioByFacade" "$d/SetWindowToWallRatioByFacade.zip"; '
+            "done"
+        ),
+    ),
+    "copy-cop-single-speed-measure": PatchSpec(
+        uploads=[
+            UploadSpec(
+                "/Users/nlong/working/openstudio/openstudio-mcp/measures/custom/SetCOPforSingleSpeedDXCoolingUnits.zip",
+                "/tmp/SetCOPforSingleSpeedDXCoolingUnits.zip",
+            )
+        ],
+        remote_command=(
+            "for d in /mnt/data/uo/pat-morris/measures /mnt/data/uo/pat-lhs/measures /mnt/data/uo/pat-nsga/measures; do "
+            'sudo mkdir -p "$d" && '
+            'sudo cp /tmp/SetCOPforSingleSpeedDXCoolingUnits.zip "$d/" && '
+            'sudo unzip -o "$d/SetCOPforSingleSpeedDXCoolingUnits.zip" -d "$d" && '
+            'sudo chown -R tr406:tr406 "$d/SetCOPforSingleSpeedDXCoolingUnits" "$d/SetCOPforSingleSpeedDXCoolingUnits.zip"; '
+            "done"
+        ),
+    ),
+    "copy-cop-two-speed-measure": PatchSpec(
+        uploads=[
+            UploadSpec(
+                "/Users/nlong/working/openstudio/openstudio-mcp/measures/custom/SetCOPforTwoSpeedDXCoolingUnits.zip",
+                "/tmp/SetCOPforTwoSpeedDXCoolingUnits.zip",
+            )
+        ],
+        remote_command=(
+            "for d in /mnt/data/uo/pat-morris/measures /mnt/data/uo/pat-lhs/measures /mnt/data/uo/pat-nsga/measures; do "
+            'sudo mkdir -p "$d" && '
+            'sudo cp /tmp/SetCOPforTwoSpeedDXCoolingUnits.zip "$d/" && '
+            'sudo unzip -o "$d/SetCOPforTwoSpeedDXCoolingUnits.zip" -d "$d" && '
+            'sudo chown -R tr406:tr406 "$d/SetCOPforTwoSpeedDXCoolingUnits" "$d/SetCOPforTwoSpeedDXCoolingUnits.zip"; '
+            "done"
+        ),
+    ),
+    "fix-set-window-glazing-permissions": (
+        "for d in /mnt/data/uo/pat-morris/measures /mnt/data/uo/pat-lhs/measures /mnt/data/uo/pat-nsga/measures; do "
+        'if [ -e "$d/set_simple_glazing" ] || [ -e "$d/set_simple_glazing.zip" ]; then '
+        'sudo chown -R tr406:tr406 "$d/set_simple_glazing" "$d/set_simple_glazing.zip" 2>/dev/null || true; '
+        'echo "fixed ownership in $d"; '
+        "else "
+        'echo "set_simple_glazing not found in $d, skipped"; '
+        "fi; "
+        "done"
+    ),
+    "deploy-coincident-optimized-measures": PatchSpec(
+        uploads=[
+            # New measures from zip
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/measures/new_measures_1.zip",
+                "/tmp/new_measures_1.zip",
+            ),
+            # Updated mapper files
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/BaselineOptimized.rb",
+                "/tmp/BaselineOptimized.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/base_optimized_workflow.osw",
+                "/tmp/base_optimized_workflow.osw",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/Office1.rb",
+                "/tmp/Office1.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/Office2.rb",
+                "/tmp/Office2.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/Office3.rb",
+                "/tmp/Office3.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/Office4.rb",
+                "/tmp/Office4.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/Office6.rb",
+                "/tmp/Office6.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/Restaurant1.rb",
+                "/tmp/Restaurant1.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/Restaurant2.rb",
+                "/tmp/Restaurant2.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/Restaurant3.rb",
+                "/tmp/Restaurant3.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/Restaurant4.rb",
+                "/tmp/Restaurant4.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/School1.rb",
+                "/tmp/School1.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/Mall1.rb",
+                "/tmp/Mall1.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/mappers/Hotel1.rb",
+                "/tmp/Hotel1.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/test_activities/class_version/coincident/classproject_optimized.csv",
+                "/tmp/classproject_optimized.csv",
+            ),
+        ],
+        remote_command=(
+            "set -e; "
+            "echo '[1/5] Creating destination directory...'; "
+            "sudo mkdir -p /mnt/data/uo/coincident/measures /mnt/data/uo/coincident/mappers; "
+            "echo '[2/5] Extracting new measures...'; "
+            "sudo unzip -o /tmp/new_measures_1.zip -d /mnt/data/uo/coincident/measures; "
+            "echo '[3/5] Copying mapper files...'; "
+            "for mapper in BaselineOptimized.rb Office1.rb Office2.rb Office3.rb Office4.rb Office6.rb "
+            "Restaurant1.rb Restaurant2.rb Restaurant3.rb Restaurant4.rb School1.rb Mall1.rb Hotel1.rb; do "
+            'if [ -f "/tmp/$mapper" ]; then '
+            'sudo cp "/tmp/$mapper" /mnt/data/uo/coincident/mappers/; '
+            'echo "  ✓ copied $mapper"; '
+            "else "
+            'echo "  ⚠ $mapper not found in /tmp"; '
+            "fi; "
+            "done; "
+            "echo '[4/5] Fixing permissions...'; "
+            "if [ -f /tmp/base_optimized_workflow.osw ]; then "
+            "sudo cp /tmp/base_optimized_workflow.osw /mnt/data/uo/coincident/mappers/base_optimized_workflow.osw; "
+            "echo '  ✓ copied base_optimized_workflow.osw'; "
+            "else "
+            "echo '  ⚠ base_optimized_workflow.osw not found in /tmp'; "
+            "fi; "
+            "if [ -f /tmp/classproject_optimized.csv ]; then "
+            "sudo cp /tmp/classproject_optimized.csv /mnt/data/uo/coincident/classproject_optimized.csv; "
+            "echo '  ✓ copied classproject_optimized.csv'; "
+            "else "
+            "echo '  ⚠ classproject_optimized.csv not found in /tmp'; "
+            "fi; "
+            "sudo chown -R tr406:tr406 /mnt/data/uo/coincident/measures /mnt/data/uo/coincident/mappers; "
+            "sudo chmod -R u+rwX,g+rX,o-rwx /mnt/data/uo/coincident/measures /mnt/data/uo/coincident/mappers; "
+            "echo '[5/5] Validating deployment...'; "
+            "test -d /mnt/data/uo/coincident/measures && echo '  ✓ measures directory exists' || echo '  ✗ measures directory missing'; "
+            "test -d /mnt/data/uo/coincident/mappers && echo '  ✓ mappers directory exists' || echo '  ✗ mappers directory missing'; "
+            "test -f /mnt/data/uo/coincident/mappers/base_optimized_workflow.osw && echo '  ✓ base_optimized_workflow.osw exists' || echo '  ✗ base_optimized_workflow.osw missing'; "
+            "test -f /mnt/data/uo/coincident/classproject_optimized.csv && echo '  ✓ classproject_optimized.csv exists' || echo '  ✗ classproject_optimized.csv missing'; "
+            "find /mnt/data/uo/coincident/measures -maxdepth 1 -type d -name 'SetWindowToWallRatio*' | wc -l | xargs -I {} echo '  ✓ Found {} directional WWR measures'; "
+            "ls -1 /mnt/data/uo/coincident/mappers/*.rb 2>/dev/null | wc -l | xargs -I {} echo '  ✓ Found {} mapper files'; "
+            "echo 'Deployment complete.'; "
+        ),
+    ),
 }
 
 
@@ -115,13 +314,17 @@ class VMRunner:
         self.timeout = timeout
         self.workers = workers
 
-    def run_all(self, remote_command: str) -> list[RemoteResult]:
+    def run_all(
+        self, remote_command: str, uploads: list[UploadSpec] | None = None
+    ) -> list[RemoteResult]:
         results: list[RemoteResult] = []
+        uploads = uploads or []
         with concurrent.futures.ThreadPoolExecutor(
             max_workers=self.workers
         ) as executor:
             futures = [
-                executor.submit(self.run_one, vm, remote_command) for vm in self.vms
+                executor.submit(self.run_one, vm, remote_command, uploads)
+                for vm in self.vms
             ]
             for future in concurrent.futures.as_completed(futures):
                 result = future.result()
@@ -133,9 +336,14 @@ class VMRunner:
         print(f"\nSummary: {passed} OK, {failed} failed")
         return results
 
-    def run_one(self, vm: VM, remote_command: str) -> RemoteResult:
+    def run_one(
+        self,
+        vm: VM,
+        remote_command: str,
+        uploads: list[UploadSpec] | None = None,
+    ) -> RemoteResult:
         target = f"{self.ssh_user}@{vm.ip}"
-        command = [
+        ssh_options = [
             "ssh",
             "-o",
             "BatchMode=yes",
@@ -148,9 +356,42 @@ class VMRunner:
         ]
 
         if self.key_file:
-            command.extend(["-i", self.key_file])
+            ssh_options.extend(["-i", self.key_file])
 
-        command.extend([target, remote_command])
+        uploads = uploads or []
+        for upload in uploads:
+            scp_command = [
+                "scp",
+                "-o",
+                "BatchMode=yes",
+                "-o",
+                f"ConnectTimeout={self.timeout}",
+                "-o",
+                "StrictHostKeyChecking=accept-new",
+                "-o",
+                "PasswordAuthentication=no",
+            ]
+            if self.key_file:
+                scp_command.extend(["-i", self.key_file])
+            scp_command.extend([upload.local_path, f"{target}:{upload.remote_path}"])
+
+            scp_result = subprocess.run(
+                scp_command,
+                capture_output=True,
+                text=True,
+                timeout=self.timeout + 5,
+                check=False,
+            )
+
+            if scp_result.returncode != 0:
+                message = (scp_result.stderr or scp_result.stdout).strip().splitlines()
+                return RemoteResult(
+                    vm,
+                    False,
+                    message[-1] if message else f"scp exited {scp_result.returncode}",
+                )
+
+        command = ssh_options + [target, remote_command]
 
         result = subprocess.run(
             command,
@@ -221,11 +462,25 @@ def main() -> int:
         if args.name is None:
             print("Available patches:")
             for name, command in sorted(PATCHES.items()):
-                print(f"  {name}: {command}")
+                if isinstance(command, PatchSpec):
+                    uploads = ", ".join(
+                        f"{upload.local_path} -> {upload.remote_path}"
+                        for upload in command.uploads
+                    )
+                    print(f"  {name}: upload [{uploads}] then {command.remote_command}")
+                else:
+                    print(f"  {name}: {command}")
             print("\nRun a patch with:")
             print("  python3 vm_management/verify_ssh_access.py patch <patch-name>")
             return 0
-        results = runner.run_all(PATCHES[args.name])
+        selected_patch = PATCHES[args.name]
+        if isinstance(selected_patch, PatchSpec):
+            results = runner.run_all(
+                selected_patch.remote_command,
+                selected_patch.uploads,
+            )
+        else:
+            results = runner.run_all(selected_patch)
     elif args.action == "run":
         results = runner.run_all(args.command)
     else:
