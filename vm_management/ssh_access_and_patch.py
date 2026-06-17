@@ -91,7 +91,15 @@ PATCHES = {
     "reset-and-pull-esbe-repo": (
         "cd /mnt/data/uo/esbe && git reset --hard HEAD && git pull"
     ),
-    "move_backup_files": (
+    "fix-coincident-reopt-ownership": (
+        "if [ -d /mnt/data/uo/coincident/reopt ]; then "
+        "sudo chown -R tr406:tr406 /mnt/data/uo/coincident/reopt && "
+        "echo 'fixed ownership for /mnt/data/uo/coincident/reopt'; "
+        "else "
+        "echo '/mnt/data/uo/coincident/reopt not found, skipped'; "
+        "fi"
+    ),
+    "move-backup-files": (
         "sudo mkdir -p /mnt/data/uo/coincident/mappers/_archive /mnt/data/uo/diverse/mappers/_archive && "
         "if [ -f /mnt/data/uo/coincident/mappers/Baseline_backup_20260603.rb ]; then "
         "sudo mv /mnt/data/uo/coincident/mappers/Baseline_backup_20260603.rb /mnt/data/uo/coincident/mappers/_archive/ && "
@@ -285,6 +293,91 @@ PATCHES = {
             "find /mnt/data/uo/coincident/measures -maxdepth 1 -type d -name 'SetWindowToWallRatio*' | wc -l | xargs -I {} echo '  ✓ Found {} directional WWR measures'; "
             "ls -1 /mnt/data/uo/coincident/mappers/*.rb 2>/dev/null | wc -l | xargs -I {} echo '  ✓ Found {} mapper files'; "
             "echo 'Deployment complete.'; "
+        ),
+    ),
+    "deploy-coincident-optimized-flex-mappers": PatchSpec(
+        uploads=[
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/Hotel1Flex.rb",
+                "/tmp/Hotel1Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/Mall1Flex.rb",
+                "/tmp/Mall1Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/Office1Flex.rb",
+                "/tmp/Office1Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/Office2Flex.rb",
+                "/tmp/Office2Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/Office3Flex.rb",
+                "/tmp/Office3Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/Office4Flex.rb",
+                "/tmp/Office4Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/Office6Flex.rb",
+                "/tmp/Office6Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/Restaurant1Flex.rb",
+                "/tmp/Restaurant1Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/Restaurant2Flex.rb",
+                "/tmp/Restaurant2Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/Restaurant3Flex.rb",
+                "/tmp/Restaurant3Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/Restaurant4Flex.rb",
+                "/tmp/Restaurant4Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/mappers/School1Flex.rb",
+                "/tmp/School1Flex.rb",
+            ),
+            UploadSpec(
+                "/Users/nlong/working/urban-analysis/coincident/classproject_optimized_flex.csv",
+                "/tmp/classproject_optimized_flex.csv",
+            ),
+        ],
+        remote_command=(
+            "set -e; "
+            "echo '[1/4] Creating destination directory...'; "
+            "sudo mkdir -p /mnt/data/uo/coincident/mappers; "
+            "echo '[2/4] Copying Flex mapper files...'; "
+            "for mapper in Hotel1Flex.rb Mall1Flex.rb Office1Flex.rb Office2Flex.rb Office3Flex.rb Office4Flex.rb Office6Flex.rb "
+            "Restaurant1Flex.rb Restaurant2Flex.rb Restaurant3Flex.rb Restaurant4Flex.rb School1Flex.rb; do "
+            'if [ -f "/tmp/$mapper" ]; then '
+            'sudo cp "/tmp/$mapper" /mnt/data/uo/coincident/mappers/; '
+            'echo "  copied $mapper"; '
+            "else "
+            'echo "  missing /tmp/$mapper"; '
+            "fi; "
+            "done; "
+            "echo '[3/4] Copying optimized flex scenario CSV...'; "
+            "if [ -f /tmp/classproject_optimized_flex.csv ]; then "
+            "sudo cp /tmp/classproject_optimized_flex.csv /mnt/data/uo/coincident/classproject_optimized_flex.csv; "
+            "echo '  copied classproject_optimized_flex.csv'; "
+            "else "
+            "echo '  missing /tmp/classproject_optimized_flex.csv'; "
+            "fi; "
+            "echo '[4/4] Fixing permissions and validating...'; "
+            "sudo chown -R tr406:tr406 /mnt/data/uo/coincident/mappers /mnt/data/uo/coincident/classproject_optimized_flex.csv 2>/dev/null || true; "
+            "sudo chmod -R u+rwX,g+rX,o-rwx /mnt/data/uo/coincident/mappers; "
+            "sudo chmod u+rw,g+r,o-rwx /mnt/data/uo/coincident/classproject_optimized_flex.csv 2>/dev/null || true; "
+            "test -f /mnt/data/uo/coincident/classproject_optimized_flex.csv && echo '  ok classproject_optimized_flex.csv' || echo '  missing classproject_optimized_flex.csv'; "
+            "ls -1 /mnt/data/uo/coincident/mappers/*Flex.rb 2>/dev/null | wc -l | xargs -I {} echo '  found {} Flex mapper files'; "
+            "echo 'Flex mapper deployment complete.'; "
         ),
     ),
 }
